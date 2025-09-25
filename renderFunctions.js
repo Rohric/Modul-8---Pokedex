@@ -1,11 +1,10 @@
-function renderPokemon(pokemon) {
+function renderPokemonCard(pokemonList) {
     let refPokemonCardList = document.getElementById("card");
-    refPokemonCardList.innerHTML = "";
-  
-    pokemon.forEach((element, index) => {
-      refPokemonCardList.innerHTML += templatePokemonCards(element)
-      console.log(`${index + 1}:${element.name}  ->  ${element.url}`);
-    });
+    refPokemonCardList.innerHTML ="";
+
+    pokemonList.forEach((element, index) => {
+        refPokemonCardList.innerHTML += templatePokemonCards(element, index);
+      });
   }
   
   
