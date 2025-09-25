@@ -7,12 +7,15 @@ let PokemonDetails = [];
 let PokemonName = [];
 let PokemonImage = [];
 let PokemonType = [];
+let PokemonGeneration = [];
 
 async function init() {
   await loadAllPokemon();
-  await loadPokemonDetails()
-  getPokemonName(); 
+  await loadPokemonDetails();
+  getPokemonName();
   getPokemonImage();
+  getPokemonType();
+  getPokemonGeneration();
   showPokemonNumberList();
   renderPokemonCard();
 }
@@ -33,8 +36,10 @@ async function loadAllPokemon() {
 async function loadMoreCards() {
   await loadAllPokemon();
   await loadPokemonDetails();
-  getPokemonName();  
+  getPokemonName();
   getPokemonImage();
+  getPokemonType();
+  getPokemonGeneration();
   renderPokemonCard(pokemonList);
   showPokemonNumberList();
 
@@ -47,7 +52,7 @@ async function loadPokemonDetails() {
   for (let i = 0; i < pokemonList.length; i++) {
     let refDetails = await fetch(pokemonList[i].url);
     let details = await refDetails.json();
-    PokemonDetails[i] = details; 
+    PokemonDetails[i] = details;
   }
 }
 
