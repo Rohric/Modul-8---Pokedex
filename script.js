@@ -12,7 +12,7 @@ async function init() {
   await loadAllPokemon();
   await loadPokemonDetails()
   getPokemonName(); 
-  getPokemonimage();
+  getPokemonImage();
   showPokemonNumberList();
   renderPokemonCard();
 }
@@ -34,7 +34,7 @@ async function loadMoreCards() {
   await loadAllPokemon();
   await loadPokemonDetails();
   getPokemonName();  
-  getPokemonimage();
+  getPokemonImage();
   renderPokemonCard(pokemonList);
   showPokemonNumberList();
 

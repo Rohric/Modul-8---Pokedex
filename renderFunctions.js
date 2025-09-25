@@ -10,18 +10,25 @@ function renderPokemonCard() {
   
 
 function getPokemonName() {
-    PokemonName = [];
+     PokemonName = [];
     PokemonDetails.forEach((details, index) => {
       PokemonName[index] = details.name;
     });
 }
 
-function getPokemonimage() {
+function getPokemonImage() {
     PokemonImage = [];
     PokemonDetails.forEach((details, index) => {
         PokemonImage[index] = details.sprites.other['official-artwork'].front_default;
     });
 }
+
+// function getPokemonType() {
+//     PokemonType = [];
+//     PokemonDetails.forEach((details, index) => {
+//         PokemonImage[index] = details.[''];
+//     });
+// }
 
 function showPokemonNumberList() {
   document.getElementById("showPokemonNumberList").innerHTML = offset;
