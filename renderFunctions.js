@@ -19,7 +19,7 @@ function getPokemonName() {
 function getPokemonimage() {
     PokemonImage = [];
     PokemonDetails.forEach((details, index) => {
-        PokemonImage[index] = details.xxxxx;
+        PokemonImage[index] = details.sprites.other['official-artwork'].front_default;
     });
 }
 
