@@ -10,6 +10,7 @@ let PokemonType = [];
 
 async function init() {
   await loadAllPokemon();
+  await loadPokemonDetails()
   showPokemonNumberList();
   renderPokemonCard(pokemonList);
 }
@@ -40,7 +41,7 @@ async function loadPokemonDetails() {
   for (let i = 0; i < pokemonList.length; i++) {
     let refDetails = await fetch(pokemonList[i].url);
     let details = await refDetails.json();
-    PokemonDetails[i] = details; // 
+    PokemonDetails[i] = details; 
   }
 }
 

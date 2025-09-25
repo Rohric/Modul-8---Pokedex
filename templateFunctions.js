@@ -1,10 +1,10 @@
 function templatePokemonCards(element) {
   return `
     <div>
-      <img src="" alt="${element.name}.Image">
+      <img src="" alt="${""}.Image">
     </div>
     <div>
-      <p>Vorname:${element.name} </p>
+      <p id=pokemonName">Vorname:${element.name} </p>
       <p>Nachname: </p>
       <p>Titel: </p>
     </div>`;
