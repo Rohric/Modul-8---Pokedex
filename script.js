@@ -1,23 +1,21 @@
 let pokemonList = [];
 let offset = 0;
 let limit = 7;
+let globalResponse = [];
+
+let PokemonDetails = [];
+let PokemonName = [];
+let PokemonImage = [];
+let PokemonType = [];
 
 async function init() {
   await loadAllPokemon();
-  showPokemonNumberList()
+  showPokemonNumberList();
   renderPokemonCard(pokemonList);
-}
-
-async function loadMore() {
-  await loadAllPokemon();
-  renderPokemonCard(pokemonList);
-  console.log(pokemonList);
-  showPokemonNumberList()
-  return pokemonList;
 }
 
 async function loadAllPokemon() {
-  let globalResponse = await fetch(
+  globalResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
   );
   let globalResponseAsJson = await globalResponse.json();
@@ -29,6 +27,21 @@ async function loadAllPokemon() {
   offset += limit;
 }
 
-// reine überprüfung im Console.log
+async function loadMoreCards() {
+  await loadAllPokemon();
+  renderPokemonCard(pokemonList);
+  console.log(pokemonList);
+  showPokemonNumberList();
+  return pokemonList;
+}
+
+async function loadPokemonDetails() {
+  PokemonDetails = [];
+  for (let i = 0; i < pokemonList.length; i++) {
+    let refDetails = await fetch(pokemonList[i].url);
+    let details = await refDetails.json();
+    PokemonDetails[i] = details; // 
+  }
+}
 
 console.log(pokemonList);
