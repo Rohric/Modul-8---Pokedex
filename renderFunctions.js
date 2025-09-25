@@ -15,11 +15,11 @@ function getPokemonName() {
 }
 
 function getPokemonGeneration() {
-  PokemonGeneration = [];
-  PokemonDetails.forEach((generation, index) => {
-    PokemonGeneration[index] = generation.name;
-  });
-}
+    PokemonGeneration = [];
+    SpeciesDetails.forEach((species, index) => {
+      PokemonGeneration[index] = species.generation.name; 
+    });
+  }
 
 function getPokemonImage() {
   PokemonImage = [];
