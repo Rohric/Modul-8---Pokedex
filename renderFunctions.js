@@ -41,7 +41,7 @@ function getPokemonType() {
 function getPokemonTypeBadges(index) {
   let html = "";
   PokemonType[index].forEach((typeName) => {
-    html += `<span class="badge_type_${typeName}">${typeName}</span>`;
+    html += `<span class="badge type_${typeName}">${typeName}</span>`;
   });
   return html;
 }
