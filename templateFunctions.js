@@ -1,8 +1,10 @@
-function templatePokemonCards(name, url, index) {
+function templatePokemonCards(name,index) {
   return `
     <article class="card">
       <h3>${index + 1}. ${name}</h3>
-      <a href="${url}" target="_blank" rel="noreferrer">${url}</a>
+    <div>
+      <img src="" alt="">
+    </div>
     </article>
   `;
 }

@@ -1,19 +1,25 @@
-function renderPokemonCard(pokemonList) {
+function renderPokemonCard() {
     let refPokemonCardList = document.getElementById("card");
     refPokemonCardList.innerHTML = "";
   
-    pokemonList.forEach((element, index) => {
-      let name = PokemonName[index];      
-      let url  = element.url;             
-      refPokemonCardList.innerHTML += templatePokemonCards(name, url, index);
+    PokemonName.forEach((name, index) => {
+      refPokemonCardList.innerHTML += templatePokemonCards(name, index);
     });
   }
+  
   
 
 function getPokemonName() {
     PokemonName = [];
     PokemonDetails.forEach((details, index) => {
       PokemonName[index] = details.name;
+    });
+}
+
+function getPokemonimage() {
+    PokemonImage = [];
+    PokemonDetails.forEach((details, index) => {
+        PokemonImage[index] = details.xxxxx;
     });
 }
 
