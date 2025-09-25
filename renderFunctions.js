@@ -7,4 +7,7 @@ function renderPokemonCard(pokemonList) {
       });
   }
   
+  function showPokemonNumberList() {
+    document.getElementById("showPokemonNumberList").innerHTML = offset;
+  }
   
