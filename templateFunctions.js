@@ -1,12 +1,9 @@
-function templatePokemonCards(element) {
+function templatePokemonCards(name, url, index) {
   return `
-    <div>
-      <img src="" alt="${""}.Image">
-    </div>
-    <div>
-      <p id=pokemonName">Vorname:${element.name} </p>
-      <p>Nachname: </p>
-      <p>Titel: </p>
-    </div>`;
+    <article class="card">
+      <h3>${index + 1}. ${name}</h3>
+      <a href="${url}" target="_blank" rel="noreferrer">${url}</a>
+    </article>
+  `;
 }
 

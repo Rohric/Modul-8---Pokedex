@@ -11,6 +11,7 @@ let PokemonType = [];
 async function init() {
   await loadAllPokemon();
   await loadPokemonDetails()
+  getPokemonName(); 
   showPokemonNumberList();
   renderPokemonCard(pokemonList);
 }
@@ -30,9 +31,12 @@ async function loadAllPokemon() {
 
 async function loadMoreCards() {
   await loadAllPokemon();
+  await loadPokemonDetails();
+  getPokemonName();  
   renderPokemonCard(pokemonList);
-  console.log(pokemonList);
   showPokemonNumberList();
+
+  console.log(pokemonList);
   return pokemonList;
 }
 
