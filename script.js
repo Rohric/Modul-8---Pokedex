@@ -9,23 +9,25 @@ let PokemonType = [];
 
 let SpeciesDetails = [];
 let PokemonGeneration = [];
-let currentPokedex = [];
-
+let currentPokedex = null;
 
 async function init() {
   await loadAllPokemon();
   await loadPokemonDetails();
   await loadPokemonSpecies();
-  getPokemonName();
+  // Abgeleitete Arrays füllen
+  getPokemonName(); // ab 0
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
-  showPokemonNumberList();
+
+  // Erst jetzt rendern
   renderPokemonCard();
+  showPokemonNumberList();
 }
 
 async function loadAllPokemon() {
-  globalResponse = await fetch(
+  let globalResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
   );
   let globalResponseAsJson = await globalResponse.json();
@@ -33,42 +35,38 @@ async function loadAllPokemon() {
   globalResponseAsJson.results.forEach((element) => {
     pokemonList.push(element);
   });
-  // limit + 7;
-  // offset + 7;
-  offset =+limit;
-
+  offset += limit;
 }
 
 async function loadMoreCards() {
-  // init();
-  await loadAllPokemon();
-  await loadPokemonDetails();
-  await loadPokemonSpecies();
-  getPokemonName();
-  getPokemonImage();
-  getPokemonType();
-  getPokemonGeneration();
+  let startIndex = pokemonList.length; // ab hier kommen neue Einträge
+
+  await loadAllPokemon(); // hängt in pokemonList an
+  await loadPokemonDetails(startIndex); // nur neue Details laden
+  await loadPokemonSpecies(startIndex); // nur neue Species laden
+
+  getPokemonName(); // nur neue Namen eintragen
+  getPokemonImage(); // nur neue Bilder eintragen
+  getPokemonType(); // nur neue Typen eintragen
+  getPokemonGeneration(); // nur neue Generationen eintragen
+
+  renderPokemonCard(); // komplett neu zeichnen (löscht & baut – aber jetzt ohne Duplikate)
   showPokemonNumberList();
-  renderPokemonCard();
-
-  // offset =+limit;
-
 }
 
-async function loadPokemonDetails() {
-  PokemonDetails = [];
-  for (let index = 0; index < pokemonList.length; index++) {
-    let refDetails = await fetch(pokemonList[index].url);
-    let details = await refDetails.json();
+// Neu: optionaler startIndex, default 0
+async function loadPokemonDetails(startIndex = 0) {
+  for (let index = startIndex; index < pokemonList.length; index++) {
+    const res = await fetch(pokemonList[index].url);
+    const details = await res.json();
     PokemonDetails[index] = details;
   }
 }
 
-async function loadPokemonSpecies() {
-  SpeciesDetails = [];
-  for (let index = 0; index < PokemonDetails.length; index++) {
-    let refSpecies = await fetch(PokemonDetails[index].species.url);
-    let species = await refSpecies.json();
+async function loadPokemonSpecies(startIndex = 0) {
+  for (let index = startIndex; index < PokemonDetails.length; index++) {
+    const res = await fetch(PokemonDetails[index].species.url);
+    const species = await res.json();
     SpeciesDetails[index] = species;
   }
 }
