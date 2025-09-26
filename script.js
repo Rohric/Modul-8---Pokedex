@@ -39,11 +39,10 @@ async function loadAllPokemon() {
 }
 
 async function loadMoreCards() {
-  let startIndex = pokemonList.length; // ab hier kommen neue Einträge
 
   await loadAllPokemon(); // hängt in pokemonList an
-  await loadPokemonDetails(startIndex); // nur neue Details laden
-  await loadPokemonSpecies(startIndex); // nur neue Species laden
+  await loadPokemonDetails(); // nur neue Details laden
+  await loadPokemonSpecies(); // nur neue Species laden
 
   getPokemonName(); // nur neue Namen eintragen
   getPokemonImage(); // nur neue Bilder eintragen
@@ -54,21 +53,30 @@ async function loadMoreCards() {
   showPokemonNumberList();
 }
 
-// Neu: optionaler startIndex, default 0
-async function loadPokemonDetails(startIndex = 0) {
-  for (let index = startIndex; index < pokemonList.length; index++) {
-    const res = await fetch(pokemonList[index].url);
-    const details = await res.json();
+
+async function loadPokemonDetails() {
+  for (let index = PokemonDetails.length; index < pokemonList.length; index++) {
+    let response = await fetch(pokemonList[index].url);
+    let details = await response.json();
     PokemonDetails[index] = details;
   }
 }
 
-async function loadPokemonSpecies(startIndex = 0) {
-  for (let index = startIndex; index < PokemonDetails.length; index++) {
-    const res = await fetch(PokemonDetails[index].species.url);
-    const species = await res.json();
-    SpeciesDetails[index] = species;
+async function loadPokemonDetails() {
+  PokemonDetails = [];
+  for (let index = 0; index < pokemonList.length; index++) {
+    let refDetails = await fetch(pokemonList[index].url);
+    let details = await refDetails.json();
+    PokemonDetails[index] = details;
   }
 }
 
+async function loadPokemonSpecies() {
+  SpeciesDetails = [];
+  for (let index = 0; index < PokemonDetails.length; index++) {
+    let refSpecies = await fetch(PokemonDetails[index].species.url);
+    let species = await refSpecies.json();
+    SpeciesDetails[index] = species;
+  }
+}
 console.log(pokemonList);

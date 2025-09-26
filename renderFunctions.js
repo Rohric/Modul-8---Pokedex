@@ -7,39 +7,38 @@ function renderPokemonCard() {
   });
 }
 
-function getPokemonName(startIndex = 0) {
-  PokemonDetails.slice(startIndex).forEach((pokemonDetail, index) => {
-    let globalIndex = startIndex + index;
-    PokemonName[globalIndex] = pokemonDetail.name;
+function getPokemonName() {
+  PokemonName = [];
+  PokemonDetails.forEach((details, index) => {
+    PokemonName[index] = details.name;
   });
 }
 
-function getPokemonImage(startIndex = 0) {
-  PokemonDetails.slice(startIndex).forEach((pokemonDetail, index) => {
-    let globalIndex = startIndex + index;
-    PokemonImage[globalIndex] =
-      pokemonDetail.sprites.other["official-artwork"].front_default;
-  });
-}
-
-function getPokemonType(startIndex = 0) {
-  PokemonDetails.slice(startIndex).forEach((pokemonDetail, index) => {
-    let globalIndex = startIndex + index;
-    let typeNames = [];
-    pokemonDetail.types.forEach((typeEntry) => {
-      typeNames.push(typeEntry.type.name);
+function getPokemonGeneration() {
+    PokemonGeneration = [];
+    SpeciesDetails.forEach((species, index) => {
+      PokemonGeneration[index] = species.generation.name; 
     });
-    PokemonType[globalIndex] = typeNames;
+  }
+
+  
+
+function getPokemonImage() {
+  PokemonImage = [];
+  PokemonDetails.forEach((details, index) => {
+    PokemonImage[index] =
+      details.sprites.other["official-artwork"].front_default;
   });
 }
 
-function getPokemonGeneration(startIndex = 0) {
-  SpeciesDetails.slice(startIndex).forEach((speciesDetail, index) => {
-    let globalIndex = startIndex + index;
-    PokemonGeneration[globalIndex] = speciesDetail.generation.name;
+function getPokemonType() {
+  PokemonType = [];
+  PokemonDetails.forEach((details, index) => {
+    let types = [];
+    details.types.forEach((element) => types.push(element.type.name));
+    PokemonType[index] = types;
   });
 }
-
 
 function getPokemonTypeBadges(index) {
   let html = "";
