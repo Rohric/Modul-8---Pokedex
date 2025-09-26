@@ -49,5 +49,5 @@ function getPokemonTypeBadges(index) {
 }
 
 function showPokemonNumberList() {
-  document.getElementById("showPokemonNumberList").innerHTML = limit;
+  document.getElementById("showPokemonNumberList").innerHTML = pokemonList.length;;
 }
