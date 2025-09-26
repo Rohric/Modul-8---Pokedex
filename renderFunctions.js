@@ -21,6 +21,8 @@ function getPokemonGeneration() {
     });
   }
 
+  
+
 function getPokemonImage() {
   PokemonImage = [];
   PokemonDetails.forEach((details, index) => {
@@ -47,5 +49,5 @@ function getPokemonTypeBadges(index) {
 }
 
 function showPokemonNumberList() {
-  document.getElementById("showPokemonNumberList").innerHTML = offset;
+  document.getElementById("showPokemonNumberList").innerHTML = limit;
 }

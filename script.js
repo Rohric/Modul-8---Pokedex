@@ -1,7 +1,6 @@
 let pokemonList = [];
 let offset = 0;
 let limit = 7;
-let globalResponse = [];
 
 let PokemonDetails = [];
 let PokemonName = [];
@@ -10,6 +9,7 @@ let PokemonType = [];
 
 let SpeciesDetails = [];
 let PokemonGeneration = [];
+
 
 async function init() {
   await loadAllPokemon();
@@ -32,11 +32,13 @@ async function loadAllPokemon() {
   globalResponseAsJson.results.forEach((element) => {
     pokemonList.push(element);
   });
-
-  offset += limit;
+  offset =+limit;
+  // limit + 7;
+  // offset + 7;
 }
 
 async function loadMoreCards() {
+  init();
   await loadAllPokemon();
   await loadPokemonDetails();
   await loadPokemonSpecies();
@@ -44,11 +46,7 @@ async function loadMoreCards() {
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
-  renderPokemonCard(pokemonList);
   showPokemonNumberList();
-
-  console.log(pokemonList);
-  return pokemonList;
 }
 
 async function loadPokemonDetails() {

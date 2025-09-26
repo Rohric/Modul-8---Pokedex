@@ -6,10 +6,12 @@
     <title>API Pokedex</title>
     
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style_overlay.css">
 
     <script src="script.js" defer></script>
     <script src="renderFunctions.js" defer></script>
     <script src="templateFunctions.js" defer></script>
+    <script src="overlay.js" defer></script>
 </head>
 <body onload="init()">
   <header>
@@ -19,10 +21,29 @@
     
 <main>
     
-    <article id="card">
+    <article id="card"></article>
 
-    </article>
+
 </main>
+
+<article id="overlay" class="overlay d_none">
+  <div class="overlay_backdrop"></div>
+
+  <article class="pokedex">
+    <header class="pokedex_header">
+      <h3 id="pokedexName" class="pokedex_name"></h3>
+      <button onclick="closePokedex()" class="pokedex_close">--X--</button>
+    </header>
+
+    <section class="pokedex_body">
+      <div id="pokedexImage" class="pokedex_image"></div>
+      <div id="pokedexTypes" class="pokedex_types"></div>
+      <div id="pokedexGeneration" class="pokedex_generation"></div>
+    </section>
+  </article>
+</article>
+
+
 </body>
 </html>
 
