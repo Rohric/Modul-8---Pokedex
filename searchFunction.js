@@ -20,15 +20,15 @@ async function searchPokemon() {
   await loadSearch();
 
   // Treffer im globalen Index finden
-  let matches = AllPokemonIndex.filter(entry =>
-    entry.name.includes(searchValue)
+  //TODO Make filter to forEach
+  let matches = AllPokemonIndex.filter(index =>
+    index.name.includes(searchValue)
   );
 
   // Delegation
   await showMatches(matches);
 }
 
-// Ausgelagerter Teil: baut Globals neu auf, lädt Details/Species, füllt Getter, rendert
 async function showMatches(matches) {
   // Globals für Suchansicht neu aufbauen
   pokemonList = matches;
