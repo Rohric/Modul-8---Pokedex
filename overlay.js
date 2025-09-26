@@ -3,7 +3,7 @@
 function openPokedex(index) {
   currentPokedex = index;
   fillPokedex(index);
-  let refOverlay = document.getElementById('overlay'); // KLASSEN-Selector
+  let refOverlay = document.getElementById('overlay'); 
   refOverlay.classList.remove('d_none');
   document.body.classList.add('overlay_open'); 
 
