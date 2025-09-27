@@ -1,89 +1,117 @@
+// === Search-Storage (separat von den Haupt-Arrays) ===
+let Matchets = [];
 
+let SearchDetails = [];
+let SearchSpecies = [];
+let SearchName = [];
+let SearchImage = [];
+let SearchType = [];
+let SearchGeneration = [];
 
-let Matches = [];
-
-// Suche ab 3 Zeichen → #cards verstecken, #searchMatches zeigen
-async function searchPokemon() {
-  let searchValue = document.getElementById('searchInput').value;
-
-  if (searchValue.length >= 3) {
-    document.getElementById('cards').classList.add('d_none');
-    document.getElementById('searchMatches').classList.remove('d_none');
-  } else {
-    closeMatches();
-  }
-}
-
-// Normale Liste wieder zeigen
-async function closeMatches() {
-  document.getElementById('searchMatches').classList.add('d_none');
-  document.getElementById('cards').classList.remove('d_none');
-}
-
-// Erwartet: global let Matches = [];
-
+// Nur die Treffer-INDIZES aus dem globalen Index ermitteln
 function getMatches(searchValue) {
   let refSearchValue = searchValue.trim().toLowerCase();
-  Matches = [];
+  Matchets = [];
   PokemonList.forEach((entry, index) => {
     if (entry.name.toLowerCase().includes(refSearchValue)) {
-      Matches.push(index);
+      Matchets.push(index);
     }
   });
-  return Matches;
+  return Matchets;
 }
 
+// Daten für die Treffer laden – NUR in die Search-Arrays schreiben
+async function loadSearchData() {
+  SearchDetails = [];
+  SearchSpecies = [];
+  SearchName = [];
+  SearchImage = [];
+  SearchType = [];
+  SearchGeneration = [];
+
+  // Details
+  for (let k = 0; k < Matchets.length; k++) {
+    let i = Matchets[k];
+    let res = await fetch(PokemonList[i].url);
+    let det = await res.json();
+    SearchDetails.push(det);
+  }
+
+  // Species
+  for (let k = 0; k < SearchDetails.length; k++) {
+    let res = await fetch(SearchDetails[k].species.url);
+    let spec = await res.json();
+    SearchSpecies.push(spec);
+  }
+
+  // Search-Getter
+  SearchDetails.forEach((details, idx) => {
+    SearchName[idx] = details.name;
+    SearchImage[idx] = details.sprites.other["official-artwork"].front_default;
+
+    let types = [];
+    details.types.forEach((entry) => types.push(entry.type.name));
+    SearchType[idx] = types;
+  });
+
+  SearchSpecies.forEach((species, idx) => {
+    SearchGeneration[idx] = species.generation.name;
+  });
+}
+
+// Adapter-Template für die Suche: gleiches Markup, zeigt aber auf Search-Arrays
+function templatePokemonCardsSearch(name, index) {
+  let badges = "";
+  SearchType[index].forEach((typeName) => {
+    badges += `<span class="badge type_${typeName}">${typeName}</span>`;
+  });
+
+  return `
+    <article class="card">
+      <h3>${index + 1}. ${name}</h3>
+      <div class="types">${badges}</div>
+      <div class="generation">${SearchGeneration[index]}</div>
+      <div><img src="${SearchImage[index]}" alt="${name}"></div>
+    </article>
+  `;
+}
+
+
+// Such-Rendering (nutzt NUR Search-Arrays, Globals bleiben unberührt)
 async function renderMatches() {
   // Ansicht umschalten
   document.getElementById('cards').classList.add('d_none');
-  document.getElementById('searchMatches').classList.remove('d_none');
-  document.getElementById('searchMatches').innerHTML = '';
+  let refMatches = document.getElementById('searchMatches');
+  refMatches.classList.remove('d_none');
+  refMatches.innerHTML = '';
 
-  // Details/Species für die Treffer laden (direkt in deine Globals)
-  for (let k = 0; k < Matches.length; k++) {
-    let i = Matches[k];
-    if (!PokemonDetails[i]) {
-      let res = await fetch(PokemonList[i].url);
-      PokemonDetails[i] = await res.json();
-    }
-  }
-  for (let k = 0; k < Matches.length; k++) {
-    let i = Matches[k];
-    if (!SpeciesDetails[i]) {
-      let res = await fetch(PokemonDetails[i].species.url);
-      SpeciesDetails[i] = await res.json();
-    }
-  }
-
-  // Getter aktualisieren
-  getPokemonName();
-  getPokemonImage();
-  getPokemonType();
-  getPokemonGeneration();
-
-  // Treffer mit DEINEM Template rendern
-  Matches.forEach((i) => {
-    document.getElementById('searchMatches').innerHTML += templatePokemonCards(PokemonName[i], i);
+  // Karten aus Search-Arrays zeichnen
+  SearchName.forEach((name, index) => {
+    refMatches.innerHTML += templatePokemonCardsSearch(name, index);
   });
 
-  // Anzahl anzeigen
-  document.getElementById('showPokemonNumberList').innerText = Matches.length;
+  // Trefferanzahl anzeigen (optional)
+  let info = document.getElementById('showPokemonNumberList');
+  if (info) info.innerText = SearchName.length;
 }
 
-// Beispiel-Einbindung im Input-Handler:
-function searchPokemon() {
+// Such-Controller: Input → Matches → Daten laden → rendern
+async function searchPokemon() {
   let searchValue = document.getElementById('searchInput').value;
   if (searchValue.trim().length < 3) {
     closeMatches();
     return;
   }
   getMatches(searchValue);
-  renderMatches();
+  await loadSearchData();
+  await renderMatches();
 }
 
-// zurück zur normalen Ansicht
+// Zurück zur normalen Liste (Haupt-Arrays & Pagination bleiben intakt)
 function closeMatches() {
   document.getElementById('searchMatches').classList.add('d_none');
   document.getElementById('searchMatches').innerHTML = '';
   document.getElementById('cards').classList.remove('d_none');
+  // optional: Zahl wieder auf die normale Anzeige setzen
+  // document.getElementById('showPokemonNumberList').innerText = ShownCards;
 }
