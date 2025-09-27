@@ -23,6 +23,12 @@ function templatePokemonCardsLocal(name, imageUrl, typesArray, generationName, i
     .join("");
 
   return `
+        <button 
+      class="open_overlay" 
+      onclick="openPokedex(${index})"
+      >Info Table
+      </button>
+      
     <article class="card">
       <h3>${index + 1}. ${name}</h3>
       <div class="types">${typesHtml}</div>

@@ -12,7 +12,7 @@ async function loadSearch() {
 
 async function searchPokemon() {
     let searchInput = document.getElementById('searchInput').value;
-    let searchValue = searchInput.trim().toLowerCase();
+    let searchValue = searchInput.toLowerCase();
   
     // erst ab 4 Zeichen suchen
     if (searchValue.length <= 2) {
