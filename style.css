@@ -17,7 +17,7 @@ header span {
   margin: 4px;
 }
 
-#cards {
+.cards {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;

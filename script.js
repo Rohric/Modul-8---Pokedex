@@ -8,11 +8,10 @@ let PokemonType = [];
 let SpeciesDetails = [];
 let PokemonGeneration = [];
 
-// wie viele Karten aktuell angezeigt werden (Start: 7)
 let ShownCards = 7;
 
 async function init() {
-  await loadAllPokemon();                 // kompletter Index
+  await loadAllPokemon();                
   await loadPokemonDetails(ShownCards);
   await loadPokemonSpecies(ShownCards);
 
@@ -22,140 +21,12 @@ async function init() {
   getPokemonGeneration();
 
   renderAllPokemonCards(ShownCards);
-  document.getElementById("showPokemonNumberList").innerText = ShownCards;
-}
-
-// === Daten laden (kompletter Index einmalig) ===
-async function loadAllPokemon() {
-  let response = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0`
-  );
-  const json = await response.json();
-  PokemonList = json.results; // [{name, url}, ...]
-  console.log(PokemonList);
-}
-
-
-async function loadMoreCards() {
-  // um 7 erhöhen, aber nicht über die Gesamtmenge hinaus
-  ShownCards = ShownCards + 7;
-
-  // fehlende Daten bis zur neuen Grenze nachziehen
-  await loadPokemonDetails(ShownCards);
-  await loadPokemonSpecies(ShownCards);
-
-  // abgeleitete Arrays aktualisieren
-  getPokemonName();
-  getPokemonImage();
-  getPokemonType();
-  getPokemonGeneration();
-
-  // neu rendern
-  renderAllPokemonCards(ShownCards);
-  document.getElementById("showPokemonNumberList").innerText = ShownCards;
-}
-
-
-// ---------- Minimal-Loader (Details/Species) ----------
-// Lädt Pokémon-Details für die ersten N Einträge (z. B. 7 fürs erste Rendern)
-async function loadPokemonDetails(count) {
-  for (let index = PokemonDetails.length; index < count; index++) {
-    const res = await fetch(PokemonList[index].url);
-    PokemonDetails[index] = await res.json();
-  }
-}
-
-// Lädt Species-Daten für die ersten N Einträge
-async function loadPokemonSpecies(count) {
-  for (let index = SpeciesDetails.length; index < count; index++) {
-    const res = await fetch(PokemonDetails[index].species.url);
-    SpeciesDetails[index] = await res.json();
-  }
-}
-
-//==============================
-// ---------- Getter (füllen deine abgeleiteten Arrays) ----------
-function getPokemonName() {
-  PokemonName = [];
-  PokemonDetails.forEach((details, index) => {
-    PokemonName[index] = details.name;
-  });
-}
-
-function getPokemonImage() {
-  PokemonImage = [];
-  PokemonDetails.forEach((details, index) => {
-    PokemonImage[index] =
-      details.sprites.other["official-artwork"].front_default;
-  });
-}
-
-function getPokemonType() {
-  PokemonType = [];
-  PokemonDetails.forEach((details, index) => {
-    let types = [];
-    details.types.forEach((entry) => {
-      types.push(entry.type.name);
-    });
-    PokemonType[index] = types;
-  });
-}
-
-function getPokemonGeneration() {
-  PokemonGeneration = [];
-  SpeciesDetails.forEach((species, index) => {
-    PokemonGeneration[index] = species.generation.name;
-  });
+  showPokemonNumberList()
 }
 
 function showPokemonNumberList() {
-  document.getElementById("showPokemonNumberList").innerHTML =
-    PokemonList.length;
+  document.getElementById("showPokemonNumberList").innerText = ShownCards;
+
 }
 
-// === Template: EINE Karte ===
-function templatePokemonCards(name, index) {
-  return `
-    <article class="card">
-      <h3>${index + 1}. ${name}</h3>
-      <button 
-      class="open_overlay" 
-      onclick="openPokedex(${index})"
-      >Info Table
-      </button>
-      <div class="types">${getPokemonTypeBadges(index)}</div>
-      <div class="generation">${PokemonGeneration[index]}</div>
-      <div><img src="${PokemonImage[index]}" alt="${name}"></div>
-    </article>
-  `;
-}
 
-// (Optional) Badge-HTML aus Typen bauen – falls noch nicht vorhanden
-function getPokemonTypeBadges(index) {
-  let html = "";
-  PokemonType[index].forEach((typeName) => {
-    html += `<span class="badge type_${typeName}">${typeName}</span>`;
-  });
-  return html;
-}
-
-// eine Karte anhängen
-function renderOnePokemonCard(index) {
-  const ref = document.getElementById('cards'); // ggf. auf 'card' anpassen
-  const name = PokemonName[index];
-  ref.innerHTML += templatePokemonCards(name, index);
-}
-
-// alle Karten bis zur aktuellen Sicht (ShownCards)
-function renderAllPokemonCards() {
-  const ref = document.getElementById('cards');
-  ref.innerHTML = '';
-
-  for (let index = 0; index < ShownCards && index < PokemonList.length; index++) {
-    renderOnePokemonCard(index);
-  }
-
-  // Anzahl anzeigen (hier nutzen wir direkt ShownCards, gedeckelt über die Schleife)
-  const info = document.getElementById('showPokemonNumberList');
-  if (info) info.innerText = ShownCards < PokemonList.length ? ShownCards : PokemonList.length;
-}

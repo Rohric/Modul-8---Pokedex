@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="style_overlay.css">
 
   <script src="script.js" defer></script>
+  <script src="loadingfunctions.js" defer></script>
   <script src="renderFunctions.js" defer></script>
   <script src="templateFunctions.js" defer></script>
   <script src="searchFunction.js" defer></script>
@@ -24,12 +25,13 @@
       <p id="showPokemonNumberList"></p>
     </span>
     <button onclick="loadMoreCards()">Mehr laden</button>
-    <input id="searchInput" type="text" placeholder="Pokémon suchen…" oninput="searchPokemon()">
+    <input id="searchInput" type="text" placeholder="Pokémon suchen…"  oninput="searchPokemon()">
   </header>
 
   <main>
-
-    <article id="cards"></article>
+<!-- ANZEIGE DER CARDS -->
+    <article id="cards" class=" cards"></article>
+    <article id="searchMatches" class=" cards d_none"></article>
     <button onclick="loadMoreCards()">Mehr laden</button>
 
 
@@ -51,7 +53,7 @@
       </section>
     </article>
   </article>
-
+  
 
 </body>
 
