@@ -39,9 +39,6 @@ async function loadAllPokemon() {
 async function loadMoreCards() {
   // um 7 erhöhen, aber nicht über die Gesamtmenge hinaus
   ShownCards = ShownCards + 7;
-  if (ShownCards > PokemonList.length) {
-    ShownCards = PokemonList.length;
-  }
 
   // fehlende Daten bis zur neuen Grenze nachziehen
   await loadPokemonDetails(ShownCards);
@@ -121,6 +118,11 @@ function templatePokemonCards(name, index) {
   return `
     <article class="card">
       <h3>${index + 1}. ${name}</h3>
+      <button 
+      class="open_overlay" 
+      onclick="openPokedex(${index})"
+      >Info Table
+      </button>
       <div class="types">${getPokemonTypeBadges(index)}</div>
       <div class="generation">${PokemonGeneration[index]}</div>
       <div><img src="${PokemonImage[index]}" alt="${name}"></div>
@@ -137,26 +139,23 @@ function getPokemonTypeBadges(index) {
   return html;
 }
 
-// === Render: eine Karte anhängen ===
+// eine Karte anhängen
 function renderOnePokemonCard(index) {
-  let ref = document.getElementById("cards"); // passe ggf. auf "card" an
-  let name = PokemonName[index]; // Getter füllen diese vorher
+  const ref = document.getElementById('cards'); // ggf. auf 'card' anpassen
+  const name = PokemonName[index];
   ref.innerHTML += templatePokemonCards(name, index);
 }
 
-// === Render: die ersten 'count' Karten ===
-function renderAllPokemonCards(count) {
-  let ref = document.getElementById("cards");
-  ref.innerHTML = "";
+// alle Karten bis zur aktuellen Sicht (ShownCards)
+function renderAllPokemonCards() {
+  const ref = document.getElementById('cards');
+  ref.innerHTML = '';
 
-  let rendered = 0;
-  PokemonList.forEach((entry, index) => {
-    if (index < count) {
-      ref.innerHTML += templatePokemonCards(PokemonName[index], index);
-      rendered++;
-    }
-  });
+  for (let index = 0; index < ShownCards && index < PokemonList.length; index++) {
+    renderOnePokemonCard(index);
+  }
 
-  // wenn du die Anzahl irgendwo anzeigen willst:
-  // document.getElementById("showPokemonNumberList").innerText = rendered;
+  // Anzahl anzeigen (hier nutzen wir direkt ShownCards, gedeckelt über die Schleife)
+  const info = document.getElementById('showPokemonNumberList');
+  if (info) info.innerText = ShownCards < PokemonList.length ? ShownCards : PokemonList.length;
 }
