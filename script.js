@@ -1,6 +1,4 @@
-let pokemonList = [];
-let offset = 0;
-let limit = 7;
+let PokemonList = [];
 
 let PokemonDetails = [];
 let PokemonName = [];
@@ -9,68 +7,127 @@ let PokemonType = [];
 
 let SpeciesDetails = [];
 let PokemonGeneration = [];
-let currentPokedex = null;
 
 async function init() {
   await loadAllPokemon();
-  await loadPokemonDetails();
-  await loadPokemonSpecies();
-  // Abgeleitete Arrays füllen
-  getPokemonName(); // ab 0
+  await loadPokemonDetails(7);
+  await loadPokemonSpecies(7);
+  getPokemonName();
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
 
-  // Erst jetzt rendern
-  renderPokemonCard();
-  showPokemonNumberList();
+  renderAllPokemonCards(7)
 }
 
-
-// funktion so umbauen das alle geladen werden, durch eine weitere werden dann nur bestimmte ans render übergeben und so weiter, so hab ich weniger probleme mit der search funktion. 
+// === Daten laden (kompletter Index einmalig) ===
 async function loadAllPokemon() {
-  let globalResponse = await fetch(
-    `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+  let response = await fetch(
+    `https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0`
   );
-  let globalResponseAsJson = await globalResponse.json();
+  const json = await response.json();
+  PokemonList = json.results; // [{name, url}, ...]
+  console.log(PokemonList);
+}
 
-  globalResponseAsJson.results.forEach((element) => {
-    pokemonList.push(element);
+// ---------- Minimal-Loader (Details/Species) ----------
+// Lädt Pokémon-Details für die ersten N Einträge (z. B. 7 fürs erste Rendern)
+async function loadPokemonDetails(count) {
+  for (let index = PokemonDetails.length; index < count; index++) {
+    const res = await fetch(PokemonList[index].url);
+    PokemonDetails[index] = await res.json();
+  }
+}
+
+// Lädt Species-Daten für die ersten N Einträge
+async function loadPokemonSpecies(count) {
+  for (let index = SpeciesDetails.length; index < count; index++) {
+    const res = await fetch(PokemonDetails[index].species.url);
+    SpeciesDetails[index] = await res.json();
+  }
+}
+
+//==============================
+// ---------- Getter (füllen deine abgeleiteten Arrays) ----------
+function getPokemonName() {
+  PokemonName = [];
+  PokemonDetails.forEach((details, index) => {
+    PokemonName[index] = details.name;
   });
-  offset += limit;
 }
 
-async function loadMoreCards() {
-
-  await loadAllPokemon(); // hängt in pokemonList an
-  await loadPokemonDetails(); // nur neue Details laden
-  await loadPokemonSpecies(); // nur neue Species laden
-
-  getPokemonName(); // nur neue Namen eintragen
-  getPokemonImage(); // nur neue Bilder eintragen
-  getPokemonType(); // nur neue Typen eintragen
-  getPokemonGeneration(); // nur neue Generationen eintragen
-
-  renderPokemonCard(); // komplett neu zeichnen (löscht & baut – aber jetzt ohne Duplikate)
-  showPokemonNumberList();
+function getPokemonImage() {
+  PokemonImage = [];
+  PokemonDetails.forEach((details, index) => {
+    PokemonImage[index] =
+      details.sprites.other["official-artwork"].front_default;
+  });
 }
 
-
-async function loadPokemonDetails() {
-  PokemonDetails = [];
-  for (let index = 0; index < pokemonList.length; index++) {
-    let refDetails = await fetch(pokemonList[index].url);
-    let details = await refDetails.json();
-    PokemonDetails[index] = details;
-  }
+function getPokemonType() {
+  PokemonType = [];
+  PokemonDetails.forEach((details, index) => {
+    let types = [];
+    details.types.forEach((entry) => {
+      types.push(entry.type.name);
+    });
+    PokemonType[index] = types;
+  });
 }
 
-async function loadPokemonSpecies() {
-  SpeciesDetails = [];
-  for (let index = 0; index < PokemonDetails.length; index++) {
-    let refSpecies = await fetch(PokemonDetails[index].species.url);
-    let species = await refSpecies.json();
-    SpeciesDetails[index] = species;
-  }
+function getPokemonGeneration() {
+  PokemonGeneration = [];
+  SpeciesDetails.forEach((species, index) => {
+    PokemonGeneration[index] = species.generation.name;
+  });
 }
-console.log(pokemonList);
+
+function showPokemonNumberList() {
+  document.getElementById("showPokemonNumberList").innerHTML =
+    PokemonList.length;
+}
+
+// === Template: EINE Karte ===
+function templatePokemonCards(name, index) {
+  return `
+    <article class="card">
+      <h3>${index + 1}. ${name}</h3>
+      <div class="types">${getPokemonTypeBadges(index)}</div>
+      <div class="generation">${PokemonGeneration[index]}</div>
+      <div><img src="${PokemonImage[index]}" alt="${name}"></div>
+    </article>
+  `;
+}
+
+// (Optional) Badge-HTML aus Typen bauen – falls noch nicht vorhanden
+function getPokemonTypeBadges(index) {
+  let html = "";
+  PokemonType[index].forEach((typeName) => {
+    html += `<span class="badge type_${typeName}">${typeName}</span>`;
+  });
+  return html;
+}
+
+// === Render: eine Karte anhängen ===
+function renderOnePokemonCard(index) {
+  let ref = document.getElementById("cards"); // passe ggf. auf "card" an
+  let name = PokemonName[index]; // Getter füllen diese vorher
+  ref.innerHTML += templatePokemonCards(name, index);
+}
+
+// === Render: die ersten 'count' Karten ===
+function renderAllPokemonCards(count) {
+  let ref = document.getElementById("cards");
+  ref.innerHTML = "";
+
+  let rendered = 0;
+  PokemonList.forEach((entry, index) => {
+    if (index < count) {
+      ref.innerHTML += templatePokemonCards(PokemonName[index], index);
+      rendered++;
+    }
+  });
+
+  // wenn du die Anzahl irgendwo anzeigen willst:
+  // document.getElementById("showPokemonNumberList").innerText = rendered;
+}

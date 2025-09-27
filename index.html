@@ -13,6 +13,7 @@
   <script src="renderFunctions.js" defer></script>
   <script src="templateFunctions.js" defer></script>
   <script src="searchFunction.js" defer></script>
+  <script src="getPokemonFunction.js" defer></script>
   <script src="overlay.js" defer></script>
 </head>
 
@@ -23,14 +24,12 @@
       <p id="showPokemonNumberList"></p>
     </span>
     <button onclick="loadMoreCards()">Mehr laden</button>
-    <input id="searchInput" type="text" placeholder="Pokémon suchen… (min. 3 Zeichen)" oninput="searchPokemon()">
-
-
+    <input id="searchInput" type="text" placeholder="Pokémon suchen…" oninput="searchPokemon()">
   </header>
 
   <main>
 
-    <article id="card"></article>
+    <article id="cards"></article>
     <button onclick="loadMoreCards()">Mehr laden</button>
 
 
