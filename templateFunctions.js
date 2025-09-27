@@ -15,3 +15,20 @@ function templatePokemonCards(name, index) {
   `;
 }
 
+
+// Nutzt dein Markup (Badges + Generation + Bild), aber mit lokalen Werten
+function templatePokemonCardsLocal(name, imageUrl, typesArray, generationName, index){
+  const typesHtml = typesArray
+    .map(t => `<span class="badge type_${t}">${t}</span>`)
+    .join("");
+
+  return `
+    <article class="card">
+      <h3>${index + 1}. ${name}</h3>
+      <div class="types">${typesHtml}</div>
+      <div class="generation">${generationName}</div>
+      <div><img src="${imageUrl}" alt="${name}" loading="lazy"></div>
+    </article>
+  `;
+}
+
