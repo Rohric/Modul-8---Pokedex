@@ -26,6 +26,8 @@ async function init() {
   showPokemonNumberList();
 }
 
+
+// funktion so umbauen das alle geladen werden, durch eine weitere werden dann nur bestimmte ans render übergeben und so weiter, so hab ich weniger probleme mit der search funktion. 
 async function loadAllPokemon() {
   let globalResponse = await fetch(
     `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
@@ -53,14 +55,6 @@ async function loadMoreCards() {
   showPokemonNumberList();
 }
 
-
-async function loadPokemonDetails() {
-  for (let index = PokemonDetails.length; index < pokemonList.length; index++) {
-    let response = await fetch(pokemonList[index].url);
-    let details = await response.json();
-    PokemonDetails[index] = details;
-  }
-}
 
 async function loadPokemonDetails() {
   PokemonDetails = [];
