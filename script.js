@@ -8,16 +8,21 @@ let PokemonType = [];
 let SpeciesDetails = [];
 let PokemonGeneration = [];
 
+// wie viele Karten aktuell angezeigt werden (Start: 7)
+let ShownCards = 7;
+
 async function init() {
-  await loadAllPokemon();
-  await loadPokemonDetails(7);
-  await loadPokemonSpecies(7);
+  await loadAllPokemon();                 // kompletter Index
+  await loadPokemonDetails(ShownCards);
+  await loadPokemonSpecies(ShownCards);
+
   getPokemonName();
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
 
-  renderAllPokemonCards(7)
+  renderAllPokemonCards(ShownCards);
+  document.getElementById("showPokemonNumberList").innerText = ShownCards;
 }
 
 // === Daten laden (kompletter Index einmalig) ===
@@ -29,6 +34,30 @@ async function loadAllPokemon() {
   PokemonList = json.results; // [{name, url}, ...]
   console.log(PokemonList);
 }
+
+
+async function loadMoreCards() {
+  // um 7 erhöhen, aber nicht über die Gesamtmenge hinaus
+  ShownCards = ShownCards + 7;
+  if (ShownCards > PokemonList.length) {
+    ShownCards = PokemonList.length;
+  }
+
+  // fehlende Daten bis zur neuen Grenze nachziehen
+  await loadPokemonDetails(ShownCards);
+  await loadPokemonSpecies(ShownCards);
+
+  // abgeleitete Arrays aktualisieren
+  getPokemonName();
+  getPokemonImage();
+  getPokemonType();
+  getPokemonGeneration();
+
+  // neu rendern
+  renderAllPokemonCards(ShownCards);
+  document.getElementById("showPokemonNumberList").innerText = ShownCards;
+}
+
 
 // ---------- Minimal-Loader (Details/Species) ----------
 // Lädt Pokémon-Details für die ersten N Einträge (z. B. 7 fürs erste Rendern)
