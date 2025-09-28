@@ -25,12 +25,12 @@ function getPokemonType() {
 }
 
 function getPokemonTypeBadges(index) {
-    let html = "";
-    PokemonType[index].forEach((typeName) => {
-      html += `<span class="badge type_${typeName}">${typeName}</span>`;
-    });
-    return html;
-  }
+  let html = "";
+  PokemonType[index].forEach((typeName) => {
+    html += `<span class="badge type_${typeName}">${typeName}</span>`;
+  });
+  return html;
+}
 
 function getPokemonGeneration() {
   PokemonGeneration = [];
@@ -40,6 +40,23 @@ function getPokemonGeneration() {
 }
 
 function getPokemonId(index) {
-  
   return PokemonDetails[index].id;
+}
+
+function getPokemonStat(index, statName) {
+  let value = 0;
+  PokemonDetails[index].stats.forEach((statEntry) => {
+    if (statEntry.stat.name === statName) {
+      value = statEntry.base_stat;
+    }
+  });
+  return value; // important else is all undifinded
+}
+
+// need this loading function, else index error in DevTools
+function refPokemonStats(){
+getPokemonStat(index, "hp");
+getPokemonStat(index, "attack");
+getPokemonStat(index, "speed");
+getPokemonStat(index, "defense");
 }

@@ -1,7 +1,7 @@
 function templatePokemonCards(name, index) {
   return `
     <article class="card">
-      <h3>${index + 1}. ${name}</h3>
+      <h3>${getPokemonId(index)}. ${name}</h3>
       <button 
       class="open_overlay" 
       onclick="openPokedex(${index})"
@@ -33,6 +33,10 @@ function templateGlobalOverlay(){
         <div id="pokedexTypes" class="pokedex_types"></div>
 
         <div id="pokedexId" class="pokedex_id"></div>
+        <div id="pokedexHP" class="pokedex_stat"></div>
+        <div id="pokedexAttack" class="pokedex_stat"></div>
+        <div id="pokedexDefense" class="pokedex_stat"></div>
+        <div id="pokedexSpeed" class="pokedex_stat"></div>
 
         <div id="pokedexGeneration" class="pokedex_generation"></div>
       </section>

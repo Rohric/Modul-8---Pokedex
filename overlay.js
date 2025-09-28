@@ -17,6 +17,7 @@ function closePokedex() {
 }
 
 function fillPokedex(index) {
+  
   // get Name from Pokemon
   document.getElementById('pokedexName').textContent = PokemonName[index];
   
@@ -31,8 +32,12 @@ function fillPokedex(index) {
     // get Generations from Pokemon
   document.getElementById('pokedexGeneration').textContent =
     PokemonGeneration[index];
-    // get ID from Pokemon
+    // get ID from Pokemon neu!!!
     document.getElementById('pokedexId').textContent = 'ID: ' + getPokemonId(index);
+    document.getElementById('pokedexHP').textContent = 'HP: ' + getPokemonStat(index, "hp");
+    document.getElementById('pokedexAttack').textContent = 'attack: ' + getPokemonStat(index, "attack");
+    document.getElementById('pokedexDefense').textContent = 'defense: ' + getPokemonStat(index, "defense");
+    document.getElementById('pokedexSpeed').textContent = 'speed: ' + getPokemonStat(index, "speed");
 }
 
 
