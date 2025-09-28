@@ -33,7 +33,7 @@ function fillPokedex(index) {
     PokemonGeneration[index];
   // get ID from Pokemon neu!!!
   document.getElementById("pokedexId").textContent =
-    "ID: " + getPokemonId(index);
+    "Pokemon-ID: " + getPokemonId(index);
   document.getElementById("pokedexHP").textContent =
     "HP: " + getPokemonStat(index, "hp");
   document.getElementById("pokedexAttack").textContent =

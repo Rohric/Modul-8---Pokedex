@@ -21,7 +21,7 @@ body.overlay_open {
     position: absolute;
     inset: 0;
     background: var(--overlay-backdrop);
-    opacity: .65;
+    opacity: .80;
 }
 
 /* Container */

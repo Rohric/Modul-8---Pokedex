@@ -24,6 +24,7 @@ function templateGlobalOverlay(){
 
     <article class="pokedex">
       <header class="pokedex_header">
+      <div id="pokedexId" class="pokedex_id"></div>
         <h3 id="pokedexName" class="pokedex_name"></h3>
         <button onclick="closePokedex()" class="pokedex_close">--X--</button>
       </header>
@@ -32,7 +33,7 @@ function templateGlobalOverlay(){
         <div id="pokedexImage" class="pokedex_image"></div>
         <div id="pokedexTypes" class="pokedex_types"></div>
 
-        <div id="pokedexId" class="pokedex_id"></div>
+        
         <div id="pokedexHP" class="pokedex_stat"></div>
         <div id="pokedexAttack" class="pokedex_stat"></div>
         <div id="pokedexDefense" class="pokedex_stat"></div>
