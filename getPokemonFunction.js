@@ -76,7 +76,4 @@ function getCardBackgroundStyle(index) {
   let a = types[0];
   let b = types[1];
   return `background: linear-gradient(135deg, var(--type-${a}) 0%, var(--type-${b}) 100%);`;
-
-  // Wenn du lieber harte Trennung magst:
-  // return `background: linear-gradient(135deg, var(--type-${a}) 0%, var(--type-${a}) 50%, var(--type-${b}) 50%, var(--type-${b}) 100%);`;
 }
