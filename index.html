@@ -38,21 +38,8 @@
 
   </main>
 
-  <article id="overlay" class="overlay d_none">
-    <div class="overlay_backdrop"></div>
+  <article id="globalOverlay" class="overlay d_none">
 
-    <article class="pokedex">
-      <header class="pokedex_header">
-        <h3 id="pokedexName" class="pokedex_name"></h3>
-        <button onclick="closePokedex()" class="pokedex_close">--X--</button>
-      </header>
-
-      <section class="pokedex_body">
-        <div id="pokedexImage" class="pokedex_image"></div>
-        <div id="pokedexTypes" class="pokedex_types"></div>
-        <div id="pokedexGeneration" class="pokedex_generation"></div>
-      </section>
-    </article>
   </article>
   
   <!-- SEARCH OVERLAY -->
@@ -62,7 +49,7 @@
   <article class="search_pokedex">
     <header class="search_pokedex_header">
       <h3 id="searchPokedexName" class="search_pokedex_name"></h3>
-      <button onclick="closeSearchPokedex()" class="search_pokedex_close">--X--</button>
+      <button onclick="closeMatchPokedex()" class="search_pokedex_close">--X--</button>
     </header>
 
     <section class="search_pokedex_body">

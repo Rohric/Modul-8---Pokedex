@@ -1,4 +1,3 @@
-// ---------- Getter (füllen deine abgeleiteten Arrays) ----------
 function getPokemonName() {
   PokemonName = [];
   PokemonDetails.forEach((details, index) => {
@@ -40,3 +39,7 @@ function getPokemonGeneration() {
   });
 }
 
+function getPokemonId(index) {
+  
+  return PokemonDetails[index].id;
+}

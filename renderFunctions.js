@@ -16,3 +16,8 @@ function renderAllPokemonCards() {
     renderOnePokemonCard(index);
   }
 }
+
+function renderGlobalOverlay() {
+  let refGlobalOverlay = document.getElementById("globalOverlay");
+  refGlobalOverlay.innerHTML = templateGlobalOverlay();
+}
