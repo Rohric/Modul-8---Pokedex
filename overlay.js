@@ -1,7 +1,9 @@
 function openPokedex(index) {
   currentPokedex = index;
   renderGlobalOverlay();
+  applyOverlayBackdropStyle(index)
   fillPokedex(index);
+  
   let refOverlay = document.getElementById("globalOverlay");
   refOverlay.classList.remove("d_none");
   document.body.classList.add("overlay_open");
@@ -40,4 +42,15 @@ function fillPokedex(index) {
     "defense: " + getPokemonStat(index, "defense");
   document.getElementById("pokedexSpeed").textContent =
     "speed: " + getPokemonStat(index, "speed");
+}
+
+
+function applyOverlayBackdropStyle(index) {
+  let refOverlay = document.getElementById('globalOverlay');
+  let types = PokemonType[index];
+  let value =
+    types.length === 1
+      ? `var(--type-${types[0]})`
+      : `linear-gradient(135deg, var(--type-${types[0]}) 0%, var(--type-${types[1]}) 100%)`;
+  refOverlay.style.setProperty('--overlay-backdrop', value);
 }

@@ -63,17 +63,17 @@ getPokemonStat(index, "defense");
 
 
 
-//
-function getCardBackgroundStyle(index) {
-  let types = PokemonType[index]; // z. B. ["grass"] oder ["grass","poison"]
+// call in templatePokemonCards
+function getPokemonBackgroundStyle(index) {
+  let types = PokemonType[index]; // zb ["grass"] oder ["grass","poison"]
 
   if (types.length === 1) {
-    let t = types[0];
-    return `background: var(--type-${t});`;
+    let type = types[0];
+    return `background: var(--type-${type});`;
   }
 
   // Smooth-Blend (schöne Mischung)
-  let a = types[0];
-  let b = types[1];
-  return `background: linear-gradient(135deg, var(--type-${a}) 0%, var(--type-${b}) 100%);`;
+  let firstType = types[0];
+  let secondType = types[1];
+  return `background: linear-gradient(135deg, var(--type-${firstType}) 0%, var(--type-${secondType}) 100%);`;
 }

@@ -1,14 +1,15 @@
-
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     height: 100vh;
     width: 100%;
-    background-color: rgba(0, 255, 255, 0.575);
 
 }
-body.overlay_open { overflow: hidden; }
+
+body.overlay_open {
+    overflow: hidden;
+}
 
 .d_none {
     display: none;
@@ -19,6 +20,8 @@ body.overlay_open { overflow: hidden; }
 .overlay_backdrop {
     position: absolute;
     inset: 0;
+    background: var(--overlay-backdrop);
+    opacity: .65;
 }
 
 /* Container */

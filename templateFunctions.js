@@ -12,7 +12,7 @@ function templatePokemonCards(name, index) {
 
       <div class="types">${getPokemonTypeBadges(index)}</div>
       <div class="generation">${PokemonGeneration[index]}</div>
-      <div class="card" style="${getCardBackgroundStyle(index)}"><img src="${PokemonImage[index]}" alt="${name}"></div>
+      <div class="card" style=" width: auto; ${getPokemonBackgroundStyle(index)}"><img src="${PokemonImage[index]}" alt="${name}"></div>
     </article>
   `;
 }

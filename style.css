@@ -57,6 +57,10 @@ header span {
   border: 1px solid;
   margin: 4px;
 }
+.card img {
+  width: auto;
+
+}
 
 .card img {
   width: 100%;
