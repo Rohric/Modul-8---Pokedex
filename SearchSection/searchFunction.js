@@ -18,6 +18,7 @@ async function searchPokemon() {
   let searchValue = document.getElementById('searchInput').value;
   if (searchValue.length < 3) {
     closeMatches();
+    showPokemonNumberList()
     return;
   }
 
@@ -192,6 +193,7 @@ function closeMatchPokedex() {
   let refOverlay = document.getElementById("searchOverlay");
   refOverlay.classList.add('d_none');
   document.body.classList.remove('overlay_open');
+
 }
 
 function fillMatchPokedex(index) {
