@@ -12,7 +12,7 @@ function templatePokemonCards(name, index) {
 
       <div class="types">${getPokemonTypeBadges(index)}</div>
       <div class="generation">${PokemonGeneration[index]}</div>
-      <div><img src="${PokemonImage[index]}" alt="${name}"></div>
+      <div class="card" style="${getCardBackgroundStyle(index)}"><img src="${PokemonImage[index]}" alt="${name}"></div>
     </article>
   `;
 }
@@ -36,9 +36,8 @@ function templateGlobalOverlay(){
         <div id="pokedexHP" class="pokedex_stat"></div>
         <div id="pokedexAttack" class="pokedex_stat"></div>
         <div id="pokedexDefense" class="pokedex_stat"></div>
+        <div id="pokedexGeneration" class=""></div>
         <div id="pokedexSpeed" class="pokedex_stat"></div>
-
-        <div id="pokedexGeneration" class="pokedex_generation"></div>
       </section>
     </article>`
 }
