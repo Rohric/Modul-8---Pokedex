@@ -8,12 +8,13 @@
 
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="style_overlay.css">
+  <link rel="stylesheet" href="./SearchSection/search_overlay.css">
 
   <script src="script.js" defer></script>
   <script src="loadingfunctions.js" defer></script>
   <script src="renderFunctions.js" defer></script>
   <script src="templateFunctions.js" defer></script>
-  <script src="searchFunction.js" defer></script>
+  <script src="./SearchSection/searchFunction.js" defer></script>
   <script src="getPokemonFunction.js" defer></script>
   <script src="overlay.js" defer></script>
 </head>
@@ -54,6 +55,24 @@
     </article>
   </article>
   
+  <!-- SEARCH OVERLAY -->
+<article id="searchOverlay" class="overlay d_none">
+  <div class="overlay_backdrop" onclick="closeSearchPokedex()"></div>
+
+  <article class="search_pokedex">
+    <header class="search_pokedex_header">
+      <h3 id="searchPokedexName" class="search_pokedex_name"></h3>
+      <button onclick="closeSearchPokedex()" class="search_pokedex_close">--X--</button>
+    </header>
+
+    <section class="search_pokedex_body">
+      <div id="searchPokedexImage" class="search_pokedex_image"></div>
+      <div id="searchPokedexTypes" class="search_pokedex_types"></div>
+      <div id="searchPokedexGeneration" class="search_pokedex_generation"></div>
+    </section>
+  </article>
+</article>
+
 
 </body>
 
