@@ -1,0 +1,181 @@
+:root {
+  /* Pokémon type colors (API names) */
+  --type-normal: #A8A77A;
+  --type-fire: #EE8130;
+  --type-water: #6390F0;
+  --type-electric: #F7D02C;
+  --type-grass: #7AC74C;
+  --type-ice: #96D9D6;
+  --type-fighting: #C22E28;
+  --type-poison: #A33EA1;
+  --type-ground: #E2BF65;
+  --type-flying: #A98FF3;
+  --type-psychic: #F95587;
+  --type-bug: #A6B91A;
+  --type-rock: #B6A136;
+  --type-ghost: #735797;
+  --type-dragon: #6F35FC;
+  --type-dark: #705746;
+  --type-steel: #B7B7CE;
+  --type-fairy: #D685AD;
+
+  /* neutrale Farben für Text/Border von Badges */
+  --badge-text: #000000;
+  --badge-border: rgba(0, 0, 0, .15);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
+}
+
+
+header button {
+  border: 1px solid;
+  background: none;
+}
+
+header span {
+  display: flex;
+  gap: 4px;
+  margin: 4px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+}
+
+.card {
+  width: clamp(220px, 30vw, 260px);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  margin: 4px;
+}
+.card img {
+  width: auto;
+
+}
+
+.card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, .6));
+  transition: transform .2s ease;
+}
+
+.types {
+  display: flex;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 30%;
+  color: var(--badge-text);
+}
+
+.generation {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid;
+  margin: 4px;
+  padding: 4px;
+  border-radius: 30%;
+}
+
+.card img {
+  display: block;
+  border: 1px solid;
+  max-width: 100%;
+  height: auto;
+}
+
+
+
+/* Mapping: Klassen -> :root Variablen */
+.type_normal {
+  background: var(--type-normal);
+}
+
+.type_fire {
+  background: var(--type-fire);
+}
+
+.type_water {
+  background: var(--type-water);
+}
+
+.type_electric {
+  background: var(--type-electric);
+  color: #000;
+}
+
+.type_grass {
+  background: var(--type-grass);
+}
+
+.type_ice {
+  background: var(--type-ice);
+  color: #000;
+}
+
+.type_fighting {
+  background: var(--type-fighting);
+}
+
+.type_poison {
+  background: var(--type-poison);
+}
+
+.type_ground {
+  background: var(--type-ground);
+}
+
+.type_flying {
+  background: var(--type-flying);
+}
+
+.type_psychic {
+  background: var(--type-psychic);
+}
+
+.type_bug {
+  background: var(--type-bug);
+  color: #000;
+}
+
+.type_rock {
+  background: var(--type-rock);
+}
+
+.type_ghost {
+  background: var(--type-ghost);
+}
+
+.type_dragon {
+  background: var(--type-dragon);
+}
+
+.type_dark {
+  background: var(--type-dark);
+}
+
+.type_steel {
+  background: var(--type-steel);
+  color: #000;
+}
+
+.type_fairy {
+  background: var(--type-fairy);
+}
