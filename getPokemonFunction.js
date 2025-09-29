@@ -72,7 +72,6 @@ function getPokemonBackgroundStyle(index) {
     return `background: var(--type-${type});`;
   }
 
-  // Smooth-Blend (schöne Mischung)
   let firstType = types[0];
   let secondType = types[1];
   return `background: linear-gradient(135deg, var(--type-${firstType}) 0%, var(--type-${secondType}) 100%);`;

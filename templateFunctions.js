@@ -1,22 +1,25 @@
-function templatePokemonCards(name, index) {
+function templatePokemonCards(name, index,) {
   return `
     <article class="card">
-      <h3>${getPokemonId(index)}. ${name}</h3>
-      <button 
-      class="open_overlay" 
-      onclick="openPokedex(${index})"
-      >Info Table
+
+      <h3>${name} </h3>
+
+      <button
+        class="open_overlay"
+        style="${getPokemonBackgroundStyle(index)};
+        cursor: pointer;
+        border-radius: 16px;"
+        onclick="openPokedex(${index})">
+        Info Table
       </button>
 
-      <div class="pokedex_id">PokeDex-ID: ${getPokemonId(index)}</div>
+      <div class="card" style=" width: auto; ${getPokemonBackgroundStyle(index)}"><img src="${PokemonImage[index]}" alt="${name}"></div>
 
       <div class="types">${getPokemonTypeBadges(index)}</div>
-      <div class="generation">${PokemonGeneration[index]}</div>
-      <div class="card" style=" width: auto; ${getPokemonBackgroundStyle(index)}"><img src="${PokemonImage[index]}" alt="${name}"></div>
     </article>
   `;
 }
-
+// Pokemon-ID: ${getPokemonId(index)} s
 
 function templateGlobalOverlay(){
   return `

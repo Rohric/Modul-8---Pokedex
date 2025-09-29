@@ -25,7 +25,7 @@ async function init() {
 }
 
 function showPokemonNumberList() {
-  document.getElementById("showPokemonNumberList").innerText = ShownCards;
+  document.getElementById("showPokemonNumberList").innerText = "Pokemons: "+ ShownCards;
 
 }
 
