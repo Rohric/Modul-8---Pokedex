@@ -53,10 +53,7 @@ function getPokemonStat(index, statName) {
   return value; // important else is all undifinded
 }
 
-
-
-
-// call in templatePokemonCards
+// for templatePokemonCards
 function getPokemonBackgroundStyle(index) {
   let types = PokemonType[index]; // zb ["grass"] oder ["grass","poison"]
 
