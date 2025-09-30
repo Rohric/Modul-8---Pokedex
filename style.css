@@ -19,133 +19,176 @@
   --type-steel: #B7B7CE;
   --type-fairy: #D685AD;
 
-  /* backgrounds  */
   --background: #101318;
   --background-card: #171A21;
   --background-button: #d3c43f;
 
-  /* neutrals */
   --text: #e8ecf1;
   --muted: #aeb6c2;
   --border: rgba(255, 255, 255, .12);
-  --shadow: 0 8px 24px rgba(0, 0, 0, .35);
-  --badge-text: #000000;
-  --badge-border: rgba(0, 0, 0, .15);
+}
+
+/* ====== Base ====== */
+
+.d_none {
+  display: none !important;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
 }
 
 body {
   margin: 0;
-  color: gold;
-  height: 100vh;
+  color: var(--text);
+  background: var(--background);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-.main_header {
-  background-color: var(--background);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px;
+/* ====== Header ====== */
+header {
   position: sticky;
   top: 0;
   z-index: 1000;
-
-
+  background: var(--background);
+  border-bottom: 1px solid var(--border);
 }
 
-header span {
+.main_header {
   display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 14px;
+  padding: 14px;
+}
+
+/* Zähler-Badge */
+header span {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  margin: 4px;
-  padding: 4px;
+  gap: 6px;
+  margin: 0;
+  padding: 6px 10px;
   background: var(--background-button);
-  color: var(--badge-text);
-  border: 1px solid;
-  border-radius: 16px
+  color: #000;
+  border: 1px solid var(--border);
+  border-radius: 10px;
 }
-
-h3 {
-  margin: auto;
-}
-
 
 .button {
-  border: 1px solid;
+  border: 1px solid var(--border);
   background: var(--background-button);
-  border-radius: 16px;
+  color: #000;
+  border-radius: 10px;
   font-size: 16px;
+  padding: 8px 12px;
   cursor: pointer;
 }
 
+/* Search-Field */
+.main_header input[type="text"] {
+  width: clamp(200px, 28vw, 360px);
+  border: 1px solid var(--border);
+  background: var(--background-card);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 10px;
+  outline: none;
+}
+
+/* ====== Listen-Container ====== */
 .cards {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  background-color: var(--background);
-
+  padding: 16px;
+  background: var(--background);
 }
 
-
-
+/* ====== Card ====== */
 .card {
   width: clamp(220px, 30vw, 260px);
   display: flex;
   flex-direction: column;
-  border: 1px solid;
-  margin: 4px;
-  background-color: var(--background-card);
+  gap: 10px;
+  border: 1px solid var(--border);
   border-radius: 16px;
+  background: var(--background-card);
+  padding: 14px;
 }
 
-.card img {
-  width: auto;
-  border-radius: 16px;
-
+/* Card-Titel */
+.card>h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text);
 }
 
-.card img {
+/* Info-Button in der Card */
+.open_overlay {
+  display: inline-block;
+  border: 1px solid var(--border);
+  color: #000;
+  background: var(--background-button);
+  border-radius: 10px;
+  font-size: 14px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.portrait {
   width: 100%;
+  height: 200px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+
+.portrait img {
+  max-width: 100%;
+  max-height: 100%;
   height: auto;
   object-fit: contain;
+  border-radius: 16px;
 }
 
 .types {
   display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
 }
 
 .badge {
   display: inline-flex;
   align-items: center;
-  border: 1px solid;
-  margin: 4px;
-  padding: 4px;
-  border-radius: 16px;
-  color: var(--badge-text);
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 10px;
+  color: #000;
 }
 
 .generation {
   display: inline-flex;
   align-items: center;
-  border: 1px solid;
-  margin: 4px;
-  padding: 4px;
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 10px;
   width: fit-content;
-}
-
-.card img {
-  display: block;
-  border: 1px solid;
-  max-width: 100%;
-  height: auto;
+  color: var(--muted);
+  background: var(--background-card);
 }
 
 
-
-/* Mapping: Klassen -> :root Variablen */
 .type_normal {
   background: var(--type-normal);
 }
@@ -160,7 +203,6 @@ h3 {
 
 .type_electric {
   background: var(--type-electric);
-  color: #000;
 }
 
 .type_grass {
@@ -169,15 +211,16 @@ h3 {
 
 .type_ice {
   background: var(--type-ice);
-  color: #000;
 }
 
 .type_fighting {
   background: var(--type-fighting);
+  color: #fff;
 }
 
 .type_poison {
   background: var(--type-poison);
+  color: #fff;
 }
 
 .type_ground {
@@ -199,18 +242,22 @@ h3 {
 
 .type_rock {
   background: var(--type-rock);
+  color: #fff;
 }
 
 .type_ghost {
   background: var(--type-ghost);
+  color: #fff;
 }
 
 .type_dragon {
   background: var(--type-dragon);
+  color: #fff;
 }
 
 .type_dark {
   background: var(--type-dark);
+  color: #fff;
 }
 
 .type_steel {
