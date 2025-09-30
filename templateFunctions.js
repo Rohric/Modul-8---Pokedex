@@ -41,6 +41,7 @@ function templateGlobalOverlay() {
           <div id="pokedexImage" class="pokedex_image"></div>
           <div id="pokedexTypes" class="pokedex_types"></div>
 
+          <div id="pokedexFlavor" class="pokedex_flavor"></div>
 
           <div id="pokedexHP" class="pokedex_stat">
             <span class="label">HP</span>

@@ -53,6 +53,20 @@ function getPokemonStat(index, statName) {
   return value; // important else is all undifinded
 }
 
+// Head hurts
+function getPokemonFlavorText(index) {
+  let text = "";
+  let list = SpeciesDetails[index].flavor_text_entries;
+
+  list.forEach((flavorEntry) => {
+    if (!text && flavorEntry.language.name === "en") {
+      text = flavorEntry.flavor_text.replace(/[\n\f\r]/g, " ");
+    }
+  });
+
+  return text;
+}
+
 // for templatePokemonCards
 function getPokemonBackgroundStyle(index) {
   let types = PokemonType[index]; // zb ["grass"] oder ["grass","poison"]

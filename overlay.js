@@ -35,6 +35,8 @@ function fillPokedex(index) {
   document.getElementById("pokedexId").textContent =
     "Pokemon-ID: " + getPokemonId(index);
     
+// Flavor Text
+document.getElementById('pokedexFlavor').textContent= "PokeLore:" + getPokemonFlavorText(index)
     // HP
     let hp = getPokemonStat(index, "hp");
     document.querySelector("#pokedexHP .value").textContent = hp;
