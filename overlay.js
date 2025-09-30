@@ -35,14 +35,25 @@ function fillPokedex(index) {
   document.getElementById("pokedexId").textContent =
     "Pokemon-ID: " + getPokemonId(index);
     
-  document.getElementById("pokedexHP").textContent =
-    "HP: " + getPokemonStat(index, "hp");
-  document.getElementById("pokedexAttack").textContent =
-    "attack: " + getPokemonStat(index, "attack");
-  document.getElementById("pokedexDefense").textContent =
-    "defense: " + getPokemonStat(index, "defense");
-  document.getElementById("pokedexSpeed").textContent =
-    "speed: " + getPokemonStat(index, "speed");
+    // HP
+    let hp = getPokemonStat(index, "hp");
+    document.querySelector("#pokedexHP .value").textContent = hp;
+    document.getElementById("pokedexHP").style.setProperty("--value", hp);
+  
+    // Attack
+    let atk = getPokemonStat(index, "attack");
+    document.querySelector("#pokedexAttack .value").textContent = atk;
+    document.getElementById("pokedexAttack").style.setProperty("--value", atk);
+  
+    // Defense
+    let def = getPokemonStat(index, "defense");
+    document.querySelector("#pokedexDefense .value").textContent = def;
+    document.getElementById("pokedexDefense").style.setProperty("--value", def);
+  
+    // Speed
+    let spe = getPokemonStat(index, "speed");
+    document.querySelector("#pokedexSpeed .value").textContent = spe;
+    document.getElementById("pokedexSpeed").style.setProperty("--value", spe);
 }
 
 

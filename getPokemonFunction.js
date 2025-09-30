@@ -53,8 +53,6 @@ function getPokemonStat(index, statName) {
   return value; // important else is all undifinded
 }
 
-// need this loading function, else index error in DevTools
-
 
 
 

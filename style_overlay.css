@@ -1,137 +1,131 @@
 .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
 
 }
 
 body.overlay_open {
-    overflow: hidden;
+  overflow: hidden;
 }
 
 .d_none {
-    display: none;
+  display: none;
 }
 
 
 /* Backdrop */
 .overlay_backdrop {
-    position: absolute;
-    inset: 0;
-    background: var(--overlay-backdrop);
-    opacity: 0.80;
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-backdrop);
+  opacity: 0.80;
 }
 
 /* Container */
 .pokedex {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid;
-    max-width: min(900px, 95vw);
-    max-height: min(85vh, 100%);
-    margin: auto;
-    margin-top: 20px;
-    background-color: rgba(0, 0, 0, 0.747);
-    color: white;
-    /* zentriert */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid;
+  max-width: min(700px, 85vw);
+  max-height: min(85vh, 100%);
+  margin: auto;
+  margin-top: 20px;
+  background-color: rgba(0, 0, 0, 0.747);
+  color: white;
+  /* zentriert */
 }
 
 /* Header / Body */
 .pokedex_header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
 }
 
 .pokedex_body {
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid;
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid;
 }
 
 /* Bereiche */
 .pokedex_image {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid;
 }
 
 .pokedex_types {
-    display: flex;
-    flex-wrap: wrap;
-    border: 1px solid;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid;
 }
 
 .pokedex_generation {
-    display: inline-flex;
-    align-items: center;
-    border: 1px solid;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid;
 }
 
 .pokedex_extra {
-    display: block;
-    border: 1px solid;
+  display: block;
+  border: 1px solid;
 }
 
 /* Close-Button */
 .pokedex_close {
-    border: 1px solid;
-    background: none;
-    color: wheat;
+  border: 1px solid;
+  background: none;
+  color: wheat;
 }
 
 
 
-
-/* Container für die Stat-Leiste */
-.stat_list {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  background: var(--panel-2);
-  padding: 12px;
+:root {
+  --stat-max: 255;
 }
 
-/* einzelne Zeile: Label links, Zahl rechts, darunter der Balken */
-.stat_row {
+/* nimm 255, wenn du die PokeAPI-Skala exakt willst */
+
+.pokedex_stat {
+  --value: 0;
+  /* wird per JS gesetzt */
   display: grid;
   grid-template-columns: 1fr auto;
-  gap: 8px 12px;
+  gap: 6px 12px;
   align-items: center;
+  margin: 8px 0;
 }
 
-.stat_label {
+.pokedex_stat .label {
   font-size: .9rem;
   color: var(--text);
-  text-transform: capitalize; /* "special-attack" -> "Special-attack" */
 }
 
-.stat_value {
+.pokedex_stat .value {
   font-size: .9rem;
   color: var(--muted);
 }
 
-/* Balken-Hintergrund + Füllung */
-.stat_bar {
+.pokedex_stat .bar {
   grid-column: 1 / -1;
   height: 10px;
-  border-radius: 999px;
-  background: rgba(255,255,255,.08);
-  overflow: hidden;
   border: 1px solid var(--border);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .08);
+  overflow: hidden;
 }
 
-.stat_fill {
+.pokedex_stat .fill {
   height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, #6ee7f9, #8b5cf6);
-  /* wenn du die Typfarben nutzen willst, überschreibe den background inline */
-  border-right: 1px solid rgba(0,0,0,.2);
+  width: calc(var(--value) / var(--stat-max) * 100%);
+  /* hübsch, und passt zu deinem Overlay: nimmt denselben Verlauf */
+  background: var(--overlay-backdrop);
+  border-right: 1px solid rgba(0, 0, 0, .2);
 }
