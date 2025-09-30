@@ -39,10 +39,7 @@
   box-sizing: border-box;
 }
 
-html,
-body {
-  height: 100%;
-}
+
 
 body {
   margin: 0;
@@ -110,6 +107,7 @@ header span {
   justify-content: center;
   padding: 16px;
   background: var(--background);
+  overflow: hidden;
 }
 
 /* ====== Card ====== */
