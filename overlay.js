@@ -34,6 +34,7 @@ function fillPokedex(index) {
   // get ID from Pokemon neu!!!
   document.getElementById("pokedexId").textContent =
     "Pokemon-ID: " + getPokemonId(index);
+    
   document.getElementById("pokedexHP").textContent =
     "HP: " + getPokemonStat(index, "hp");
   document.getElementById("pokedexAttack").textContent =

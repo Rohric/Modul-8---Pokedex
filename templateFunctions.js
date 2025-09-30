@@ -19,7 +19,7 @@ function templatePokemonCards(name, index,) {
     </article>
   `;
 }
-// Pokemon-ID: ${getPokemonId(index)} s
+// Pokemon-ID: ${getPokemonId(index)}
 
 function templateGlobalOverlay(){
   return `
@@ -37,11 +37,14 @@ function templateGlobalOverlay(){
         <div id="pokedexTypes" class="pokedex_types"></div>
 
         
+        
         <div id="pokedexHP" class="pokedex_stat"></div>
         <div id="pokedexAttack" class="pokedex_stat"></div>
         <div id="pokedexDefense" class="pokedex_stat"></div>
-        <div id="pokedexGeneration" class=""></div>
         <div id="pokedexSpeed" class="pokedex_stat"></div>
+        <div id="pokedexGeneration" class=""></div>
+
+        
       </section>
     </article>`
 }

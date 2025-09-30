@@ -84,3 +84,54 @@ body.overlay_open {
     background: none;
     color: wheat;
 }
+
+
+
+
+/* Container für die Stat-Leiste */
+.stat_list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--panel-2);
+  padding: 12px;
+}
+
+/* einzelne Zeile: Label links, Zahl rechts, darunter der Balken */
+.stat_row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 12px;
+  align-items: center;
+}
+
+.stat_label {
+  font-size: .9rem;
+  color: var(--text);
+  text-transform: capitalize; /* "special-attack" -> "Special-attack" */
+}
+
+.stat_value {
+  font-size: .9rem;
+  color: var(--muted);
+}
+
+/* Balken-Hintergrund + Füllung */
+.stat_bar {
+  grid-column: 1 / -1;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.08);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.stat_fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #6ee7f9, #8b5cf6);
+  /* wenn du die Typfarben nutzen willst, überschreibe den background inline */
+  border-right: 1px solid rgba(0,0,0,.2);
+}

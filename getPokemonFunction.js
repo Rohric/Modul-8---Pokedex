@@ -54,12 +54,7 @@ function getPokemonStat(index, statName) {
 }
 
 // need this loading function, else index error in DevTools
-function refPokemonStats(){
-getPokemonStat(index, "hp");
-getPokemonStat(index, "attack");
-getPokemonStat(index, "speed");
-getPokemonStat(index, "defense");
-}
+
 
 
 
