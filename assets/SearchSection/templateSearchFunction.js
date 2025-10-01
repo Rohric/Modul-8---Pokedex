@@ -5,12 +5,14 @@ function templatePokemonCardsSearch(name, index) {
 
       <button
         class="open_overlay"
-        style="cursor: pointer; border-radius: 16px;"
+        style="${getSearchPokemonBackgroundStyle(index)}
+        cursor: pointer;
+        border-radius: 16px;"
         onclick="openSearchPokedex(${index})">
         Info Table
       </button>
 
-      <div class="portrait" style="width:auto;">
+      <div class="portrait" style="width:auto;${getSearchPokemonBackgroundStyle(index)}">
         <img src="${SearchImage[index]}" alt="${name}">
       </div>
 
@@ -20,8 +22,6 @@ function templatePokemonCardsSearch(name, index) {
     </article>
   `;
 }
-
-  
 
 function templateSearchPokedex(index) {
     return `
