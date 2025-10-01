@@ -1,5 +1,20 @@
 let currentSearchPokedex = null;
 
+async function renderMatches() {
+  let refCards = document.getElementById('cards');
+  let refMatches = document.getElementById('searchMatches');
+  refCards.classList.add('d_none');
+  refMatches.classList.remove('d_none');
+  refMatches.innerHTML = '';
+
+  SearchName.forEach((name, index) => {
+    refMatches.innerHTML += templatePokemonCardsSearch(name, index);
+  });
+
+  let info = document.getElementById('showPokemonNumberList');
+  if (info) info.innerText = SearchName.length;
+}
+
 function renderSearchPokedex(index) {
   currentSearchPokedex = index;
 
@@ -9,8 +24,8 @@ function renderSearchPokedex(index) {
   overlayRef.classList.remove('d_none');
   document.body.classList.add('overlay_open');
 
-  applySearchOverlayBackdropStyle(index); // Typ-Farbverlauf für Suche setzen
-  openSearchPokedexTab('about');          // About als Start
+  applySearchOverlayBackdropStyle(index);
+  openSearchPokedexTab('about');
 }
 
 function openSearchPokedex(index) {

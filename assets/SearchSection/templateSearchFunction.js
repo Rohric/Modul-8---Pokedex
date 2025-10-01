@@ -1,24 +1,26 @@
 function templatePokemonCardsSearch(name, index) {
-    let badges = "";
-    SearchType[index].forEach((t) => {
-      badges += `<span class="badge type_${t}">${t}</span>`;
-    });
-  
-    return `
-      <article class="card">
-        <h3>${name}</h3>
-        <button class="open_overlay"
-                style="cursor:pointer; border-radius:16px;"
-                onclick="openSearchPokedex(${index})">
-          Info Table
-        </button>
-        <div class="portrait" style="width:auto;">
-          <img src="${SearchImage[index]}" alt="${name}">
-        </div>
-        <div class="types">${badges}</div>
-      </article>
-    `;
-  }
+  return `
+    <article class="card">
+      <h3>${name}</h3>
+
+      <button
+        class="open_overlay"
+        style="cursor: pointer; border-radius: 16px;"
+        onclick="openSearchPokedex(${index})">
+        Info Table
+      </button>
+
+      <div class="portrait" style="width:auto;">
+        <img src="${SearchImage[index]}" alt="${name}">
+      </div>
+
+      <div class="types">
+        ${getSearchPokemonTypeBadges(index)}   <!-- <<< hier: Helper statt Schleife -->
+      </div>
+    </article>
+  `;
+}
+
   
 
 function templateSearchPokedex(index) {
