@@ -51,48 +51,39 @@ function openPokedex(index) {
   function fillPokedex(index) {
     // get Name from Pokemon
     document.getElementById("pokedexName").textContent = PokemonName[index];
-  
     //get Image from Pokemon
     document.getElementById("pokedexImage").innerHTML = `
     <img src="${PokemonImage[index]}" alt="${PokemonName[index]}">`;
-  
     // get Types from Pokemon
     document.getElementById("pokedexTypes").innerHTML =
       getPokemonTypeBadges(index);
-  
     // get Generations from Pokemon
     document.getElementById("pokedexGeneration").textContent =
       PokemonGeneration[index];
-  
     // get ID from Pokemon neu!!!
     document.getElementById("pokedexId").textContent =
       "Pokemon-ID: " + getPokemonId(index);
-  
     //Lore
     document.getElementById("pokedexLoreText").textContent =
       getPokemonFlavorText(index);
-  
+  //Pokemon Heigt
     document.getElementById("pokedexLoreHeight").textContent =
       "Height: " + getPokemonHeight(index);
-  
+  // Pokemon Weight
     document.getElementById("pokedexLoreWeight").textContent =
       "Weight: " + getPokemonWeight(index);
-  
     // HP
     let hp = getPokemonStat(index, "hp");
     document.querySelector("#pokedexHP .value").textContent = hp;
     document.getElementById("pokedexHP").style.setProperty("--value", hp);
-  
     // Attack
     let atk = getPokemonStat(index, "attack");
     document.querySelector("#pokedexAttack .value").textContent = atk;
     document.getElementById("pokedexAttack").style.setProperty("--value", atk);
-  
     // Defense
     let def = getPokemonStat(index, "defense");
     document.querySelector("#pokedexDefense .value").textContent = def;
     document.getElementById("pokedexDefense").style.setProperty("--value", def);
-  
     // Speed
     let speed = getPokemonStat(index, "speed");
     document.querySelector("#pokedexSpeed .value").textContent = speed;

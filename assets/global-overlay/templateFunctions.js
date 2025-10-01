@@ -13,9 +13,10 @@ function templatePokemonCards(name, index) {
         Info Table
       </button>
 
-      <div class="portrait" style=" width: auto; ${getPokemonBackgroundStyle(
-        index
-      )}"><img src="${PokemonImage[index]}" alt="${name}"></div>
+      <div class="portrait" 
+        style=" width: auto; ${getPokemonBackgroundStyle(index)}">
+        <img src="${PokemonImage[index]}" alt="${name}">
+      </div>
 
       <div class="types">${getPokemonTypeBadges(index)}</div>
     </article>
@@ -31,6 +32,7 @@ function templateGlobalOverlay() {
 
     <article class="pokedex">
       <header class="pokedex_header">
+
         <button id="pokedexPrev" class="pokedex_nav_btn" onclick="prevPokedex()">◀</button>
 
         <div id="pokedexId" class="pokedex_id"></div>
@@ -38,7 +40,6 @@ function templateGlobalOverlay() {
         <div id="pokedexGeneration" class="pokedex_generation"></div>
         <button onclick="closePokedex()" class="pokedex_close">close</button>
 
-                    <!-- Pfeile -->
       
         <button id="pokedexNext" class="pokedex_nav_btn" onclick="nextPokedex()">▶</button>
     

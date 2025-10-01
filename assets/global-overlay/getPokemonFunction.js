@@ -53,7 +53,7 @@ function getPokemonStat(index, statName) {
   return value; // important else is all undifinded
 }
 
-// Head hurts Beschreibung der Pokemon
+// Head hurts Description from Pokemon
 function getPokemonFlavorText(index) {
   let text = "";
   let list = SpeciesDetails[index].flavor_text_entries;

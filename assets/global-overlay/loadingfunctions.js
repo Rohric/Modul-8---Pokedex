@@ -18,7 +18,7 @@ async function loadMoreCards() {
   getPokemonType();
   getPokemonGeneration();
 
-  // neu rendern
+  // new render
   renderAllPokemonCards(ShownCards);
   showPokemonNumberList()
 }
