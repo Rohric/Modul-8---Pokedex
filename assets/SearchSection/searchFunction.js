@@ -3,10 +3,9 @@
 // Such-Controller (Input → Matches → Daten laden → Ableitungen → Render)
 async function searchPokemon() {
   let searchValue = document.getElementById('searchInput').value;
-  let trimmed = searchValue.trim();
 
   // erst ab 3 Zeichen suchen
-  if (trimmed.length < 3) {
+  if (searchValue.length < 3) {
     closeMatches();
     return;
   }
@@ -15,7 +14,7 @@ async function searchPokemon() {
   resetSearchArrays();
 
   // Treffer-Indizes aus globalem Index ermitteln
-  getMatches(trimmed);
+  getMatches(searchValue);
 
   // Detail- & Species-Daten für Treffer laden
   await loadSearchDetails();
