@@ -53,7 +53,7 @@ function getPokemonStat(index, statName) {
   return value; // important else is all undifinded
 }
 
-// Head hurts
+// Head hurts Beschreibung der Pokemon
 function getPokemonFlavorText(index) {
   let text = "";
   let list = SpeciesDetails[index].flavor_text_entries;
@@ -65,6 +65,18 @@ function getPokemonFlavorText(index) {
   });
 
   return text;
+}
+
+// PokemonHeight in Meter
+function getPokemonHeight(index) {
+  let PokemonHeight = PokemonDetails[index].height; // wert in dezimeter
+  return (PokemonHeight * 0.1).toFixed(1) + " m";
+}
+
+// PokemonWeight in KG
+function getPokemonWeight(index) {
+  let PokemonWeight = PokemonDetails[index].weight;
+  return (PokemonWeight * 0.1).toFixed(1) + " Kg";
 }
 
 // for templatePokemonCards

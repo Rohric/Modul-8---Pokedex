@@ -21,7 +21,41 @@ function templatePokemonCards(name, index) {
     </article>
   `;
 }
-// Pokemon-ID: ${getPokemonId(index)}
+function openPokedexTab(which) {
+ // Head Hurts
+  let about = document.getElementById('pokedexAbout');
+  let stats = document.getElementById('pokedexStats');
+  let tabAbout = document.getElementById('tabAbout');
+  let tabStats = document.getElementById('tabStats');
+
+  if (which === 'about') {
+    about.classList.remove('d_none');
+    stats.classList.add('d_none');
+    tabAbout.classList.add('is_active');
+    tabStats.classList.remove('is_active');
+  } else {
+    stats.classList.remove('d_none');
+    about.classList.add('d_none');
+    tabStats.classList.add('is_active');
+    tabAbout.classList.remove('is_active');
+  }
+}
+
+function prevPokedex() {
+  // ein Schritt zurück, mit Wrap
+  currentPokedex = (currentPokedex - 1 + PokemonName.length) % PokemonName.length;
+  fillPokedex(currentPokedex);
+  setOverlayTypeBackground(currentPokedex); // benutzt du bereits für Farben
+}
+
+function nextPokedex() {
+  // ein Schritt vor, mit Wrap
+  currentPokedex = (currentPokedex + 1) % PokemonName.length;
+  fillPokedex(currentPokedex);
+  setOverlayTypeBackground(currentPokedex);
+}
+
+
 
 function templateGlobalOverlay() {
   return `
@@ -29,44 +63,70 @@ function templateGlobalOverlay() {
 
     <article class="pokedex">
       <header class="pokedex_header">
+        <button id="pokedexPrev" class="pokedex_nav_btn" onclick="prevPokedex()">◀</button>
+
         <div id="pokedexId" class="pokedex_id"></div>
         <h3 id="pokedexName" class="pokedex_name"></h3>
+        <div id="pokedexGeneration" class="pokedex_generation"></div>
+        <button onclick="closePokedex()" class="pokedex_close">close</button>
 
-          <div id="pokedexGeneration" class=""></div>
+                    <!-- Pfeile -->
+      
+        <button id="pokedexNext" class="pokedex_nav_btn" onclick="nextPokedex()">▶</button>
+    
 
-        <button onclick="closePokedex()" class="pokedex_close">--X--</button>
-      </header> 
+      </header>
 
-        <section class="pokedex_body">
-          <div id="pokedexImage" class="pokedex_image"></div>
-          <div id="pokedexTypes" class="pokedex_types"></div>
 
-          <div id="pokedexFlavor" class="pokedex_flavor"></div>
 
-          <div id="pokedexHP" class="pokedex_stat">
-            <span class="label">HP</span>
-            <span class="value"></span>
-            <div class="bar"><div class="fill"></div></div>
+      <!-- Tabs -->
+      <div id="pokedexTabs" class="pokedex_tabs">
+        <button id="tabAbout" class="pokedex_tab is_active" onclick="openPokedexTab('about')">About</button>
+        <button id="tabStats" class="pokedex_tab" onclick="openPokedexTab('stats')">Stats</button>
+
+        
+      </div>
+
+      <!-- ABOUT -->
+      <section id="pokedexAbout" class="pokedex_section">
+        <section id="pokedexLoreBox" class="pokedex_lore">
+          <div id="pokedexLoreText" class="pokedex_lore_text"></div>
+          <div class="pokedex_lore_meta">
+            <span id="pokedexLoreHeight" class="pokedex_lore_badge"></span>
+            <span id="pokedexLoreWeight" class="pokedex_lore_badge"></span>
           </div>
-
-          <div id="pokedexAttack" class="pokedex_stat">
-            <span class="label">Attack</span>
-            <span class="value"></span>
-            <div class="bar"><div class="fill"></div></div>
-          </div>
-
-          <div id="pokedexDefense" class="pokedex_stat">
-            <span class="label">Defense</span>
-            <span class="value"></span>
-            <div class="bar"><div class="fill"></div></div>
-          </div>
-
-          <div id="pokedexSpeed" class="pokedex_stat">
-            <span class="label">Speed</span>
-            <span class="value"></span>
-            <div class="bar"><div class="fill"></div></div>
-          </div>
-
         </section>
-    </article>`;
+
+        <div id="pokedexImage" class="pokedex_image"></div>
+       <div id="pokedexTypes" class="pokedex_types"></div>
+      </section>
+
+      <!-- STATS -->
+      <section id="pokedexStats" class="pokedex_section d_none">
+        <div id="pokedexHP" class="pokedex_stat">
+          <span class="label">HP</span>
+          <span class="value"></span>
+          <div class="bar"><div class="fill"></div></div>
+        </div>
+
+        <div id="pokedexAttack" class="pokedex_stat">
+          <span class="label">Attack</span>
+          <span class="value"></span>
+          <div class="bar"><div class="fill"></div></div>
+        </div>
+
+        <div id="pokedexDefense" class="pokedex_stat">
+          <span class="label">Defense</span>
+          <span class="value"></span>
+          <div class="bar"><div class="fill"></div></div>
+        </div>
+
+        <div id="pokedexSpeed" class="pokedex_stat">
+          <span class="label">Speed</span>
+          <span class="value"></span>
+          <div class="bar"><div class="fill"></div></div>
+        </div>
+      </section>
+    </article>
+  `;
 }
