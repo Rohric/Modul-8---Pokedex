@@ -21,39 +21,7 @@ function templatePokemonCards(name, index) {
     </article>
   `;
 }
-function openPokedexTab(which) {
- // Head Hurts
-  let about = document.getElementById('pokedexAbout');
-  let stats = document.getElementById('pokedexStats');
-  let tabAbout = document.getElementById('tabAbout');
-  let tabStats = document.getElementById('tabStats');
 
-  if (which === 'about') {
-    about.classList.remove('d_none');
-    stats.classList.add('d_none');
-    tabAbout.classList.add('is_active');
-    tabStats.classList.remove('is_active');
-  } else {
-    stats.classList.remove('d_none');
-    about.classList.add('d_none');
-    tabStats.classList.add('is_active');
-    tabAbout.classList.remove('is_active');
-  }
-}
-
-function prevPokedex() {
-  // ein Schritt zurück, mit Wrap
-  currentPokedex = (currentPokedex - 1 + PokemonName.length) % PokemonName.length;
-  fillPokedex(currentPokedex);
-  setOverlayTypeBackground(currentPokedex); // benutzt du bereits für Farben
-}
-
-function nextPokedex() {
-  // ein Schritt vor, mit Wrap
-  currentPokedex = (currentPokedex + 1) % PokemonName.length;
-  fillPokedex(currentPokedex);
-  setOverlayTypeBackground(currentPokedex);
-}
 
 
 
