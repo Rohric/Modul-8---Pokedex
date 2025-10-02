@@ -269,7 +269,7 @@ header span {
 
 
 .loading_spinner {
-  background-image: url(./assets/images/Pokeball.png);
+  background-image: url(../images/pokeball.png);
   background-size: contain;    
   border-radius: 50%;
   width: 300px;
