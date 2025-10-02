@@ -10,10 +10,10 @@ async function loadAllPokemon() {
 async function loadMoreCards() {
   ShownCards = ShownCards + 7;
   showGlobalLoader();
+  await waitForNextAnimationFrame()
 
   await loadPokemonDetails(ShownCards);
   await loadPokemonSpecies(ShownCards);
-  hideGlobalLoader();
 
   getPokemonName();
   getPokemonImage();
@@ -21,8 +21,11 @@ async function loadMoreCards() {
   getPokemonGeneration();
 
   renderAllPokemonCards(ShownCards);
-  showPokemonNumberList()
+  showPokemonNumberList();
+
+  hideGlobalLoader();
 }
+
 
 async function loadPokemonDetails(count) {
   for (let index = PokemonDetails.length; index < count; index++) {

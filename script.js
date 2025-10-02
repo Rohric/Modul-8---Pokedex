@@ -11,11 +11,16 @@ let PokemonGeneration = [];
 let ShownCards = 7;
 
 async function init() {
-  await loadAllPokemon();
   showGlobalLoader();
-  await loadPokemonDetails(ShownCards);
-  await loadPokemonSpecies(ShownCards);
-  hideGlobalLoader();
+  await waitForNextAnimationFrame();  
+
+  try {
+    await loadAllPokemon();
+    await loadPokemonDetails(ShownCards);
+    await loadPokemonSpecies(ShownCards);
+  } finally {
+  }
+
   getPokemonName();
   getPokemonImage();
   getPokemonType();
@@ -23,9 +28,20 @@ async function init() {
 
   renderAllPokemonCards(ShownCards);
   showPokemonNumberList();
+
+  hideGlobalLoader();
 }
+
+
 
 function showPokemonNumberList() {
   document.getElementById("showPokemonNumberList").innerText =
     "Pokemons: " + ShownCards + " / " + PokemonList.length;
+}
+
+
+function waitForNextAnimationFrame() {
+  return new Promise((resolveNextFrame) => {
+    window.requestAnimationFrame(() => resolveNextFrame());
+  });
 }

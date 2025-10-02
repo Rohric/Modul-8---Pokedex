@@ -20,9 +20,11 @@
 function showGlobalLoader() {
   let loader = document.getElementById('loadingSpinner');
   loader.classList.remove('d_none');
+  document.getElementById('cards').classList.add('d_none')
 }
 
 function hideGlobalLoader() {
   let loader = document.getElementById('loadingSpinner');
   loader.classList.add('d_none');
+  document.getElementById('cards').classList.remove('d_none')
 }
