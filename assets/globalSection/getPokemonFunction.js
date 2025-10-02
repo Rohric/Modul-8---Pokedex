@@ -55,7 +55,7 @@ function getPokemonFlavorText(index) {
   let list = SpeciesDetails[index].flavor_text_entries;
 
   list.forEach((flavorEntry) => {
-    if (!text && flavorEntry.language.name === "en") {
+    if (flavorEntry.language.name === "en") {
       text = flavorEntry.flavor_text.replace(/[\n\f\r]/g, " ");
     }
   });
@@ -63,19 +63,16 @@ function getPokemonFlavorText(index) {
   return text;
 }
 
-// PokemonHeight in Meter
 function getPokemonHeight(index) {
   let PokemonHeight = PokemonDetails[index].height; // wert in dezimeter
   return (PokemonHeight * 0.1).toFixed(1) + " m";
 }
 
-// PokemonWeight in KG
 function getPokemonWeight(index) {
   let PokemonWeight = PokemonDetails[index].weight;
   return (PokemonWeight * 0.1).toFixed(1) + " Kg";
 }
 
-// for templatePokemonCards
 function getPokemonBackgroundStyle(index) {
   let types = PokemonType[index]; // zb ["grass"] oder ["grass","poison"]
 

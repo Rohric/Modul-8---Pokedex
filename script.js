@@ -11,22 +11,21 @@ let PokemonGeneration = [];
 let ShownCards = 7;
 
 async function init() {
-  await loadAllPokemon();                
+  await loadAllPokemon();
+  showGlobalLoader();
   await loadPokemonDetails(ShownCards);
   await loadPokemonSpecies(ShownCards);
-
+  hideGlobalLoader();
   getPokemonName();
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
 
   renderAllPokemonCards(ShownCards);
-  showPokemonNumberList()
+  showPokemonNumberList();
 }
 
 function showPokemonNumberList() {
-  document.getElementById("showPokemonNumberList").innerText = "Pokemons: "+ ShownCards + " / " + PokemonList.length ;
-
+  document.getElementById("showPokemonNumberList").innerText =
+    "Pokemons: " + ShownCards + " / " + PokemonList.length;
 }
-
-

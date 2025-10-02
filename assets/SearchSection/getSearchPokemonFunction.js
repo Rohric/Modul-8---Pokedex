@@ -1,6 +1,4 @@
-// === Search-Getter (spiegeln deine globalen Getter, aber mit Search-Arrays) ===
 
-// Namen füllen: SearchDetails -> SearchName
 function getSearchPokemonName() {
   SearchName = [];
   SearchDetails.forEach((details, index) => {
@@ -8,7 +6,6 @@ function getSearchPokemonName() {
   });
 }
 
-// Bilder füllen: SearchDetails -> SearchImage
 function getSearchPokemonImage() {
   SearchImage = [];
   SearchDetails.forEach((details, index) => {
@@ -17,7 +14,6 @@ function getSearchPokemonImage() {
   });
 }
 
-// Typen füllen: SearchDetails -> SearchType (Array von Strings pro Pokémon)
 function getSearchPokemonType() {
   SearchType = [];
   SearchDetails.forEach((details, index) => {
@@ -29,7 +25,6 @@ function getSearchPokemonType() {
   });
 }
 
-// Badges-HTML für das Search-Template
 function getSearchPokemonTypeBadges(index) {
   let html = "";
   SearchType[index].forEach((typeName) => {
@@ -38,7 +33,6 @@ function getSearchPokemonTypeBadges(index) {
   return html;
 }
 
-// Generationen füllen: SearchSpecies -> SearchGeneration
 function getSearchPokemonGeneration() {
   SearchGeneration = [];
   SearchSpecies.forEach((species, index) => {
@@ -46,12 +40,10 @@ function getSearchPokemonGeneration() {
   });
 }
 
-// ID eines Suchtreffers (einfacher Zugriff)
 function getSearchPokemonId(index) {
   return SearchDetails[index].id;
 }
 
-// Einzelner Stat eines Suchtreffers
 function getSearchPokemonStat(index, statName) {
   let value = 0;
   SearchDetails[index].stats.forEach((statEntry) => {
@@ -59,10 +51,9 @@ function getSearchPokemonStat(index, statName) {
       value = statEntry.base_stat;
     }
   });
-  return value; // wichtig für konsistentes Verhalten
+  return value; //// important else is value undifinded
 }
 
-// Flavor-Text (englisch, erster passender) – wie global, nur mit SearchSpecies
 function getSearchPokemonFlavorText(index) {
   let text = "";
   let list = SearchSpecies[index].flavor_text_entries;
@@ -76,21 +67,18 @@ function getSearchPokemonFlavorText(index) {
   return text;
 }
 
-// Größe (m) – PokeAPI: height in Decimeter
 function getSearchPokemonHeight(index) {
-  let pokemonHeight = SearchDetails[index].height; // in dm
+  let pokemonHeight = SearchDetails[index].height; 
   return (pokemonHeight * 0.1).toFixed(1) + " m";
 }
 
-// Gewicht (Kg) – PokeAPI: weight in Hectogram
 function getSearchPokemonWeight(index) {
-  let pokemonWeight = SearchDetails[index].weight; // in hg
+  let pokemonWeight = SearchDetails[index].weight; 
   return (pokemonWeight * 0.1).toFixed(1) + " Kg";
 }
 
-// Hintergrund-Style für Karten/Buttons im Search-Kontext (wie global)
 function getSearchPokemonBackgroundStyle(index) {
-  let types = SearchType[index]; // z. B. ["grass"] oder ["grass","poison"]
+  let types = SearchType[index]; // zb ["grass"] oder ["grass","poison"]
 
   if (types.length === 1) {
     let type = types[0];

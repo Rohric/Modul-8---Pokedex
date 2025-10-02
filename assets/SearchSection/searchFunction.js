@@ -1,37 +1,28 @@
-// searchFunction.js
 
-// Such-Controller (Input → Matches → Daten laden → Ableitungen → Render)
 async function searchPokemon() {
   let searchValue = document.getElementById('searchInput').value;
-
-  // erst ab 3 Zeichen suchen
   if (searchValue.length < 3) {
     closeMatches();
     return;
   }
-
-  // alles für die Suche zurücksetzen
   resetSearchArrays();
-
-  // Treffer-Indizes aus globalem Index ermitteln
   getMatches(searchValue);
 
-  // Detail- & Species-Daten für Treffer laden
+  showGlobalLoader();
   await loadSearchDetails();
   await loadSearchSpecies();
+  hideGlobalLoader();
 
-  // WICHTIG: abgeleitete Arrays jetzt füllen (wie global – nur Search-Varianten)
   getSearchPokemonName();
   getSearchPokemonImage();
   getSearchPokemonType();
   getSearchPokemonGeneration();
 
-  // Treffer rendern
   renderMatches();
 }
 
-// Zurück zur normalen Ansicht
 function closeMatches() {
+  showGlobalLoader();
   let refMatches = document.getElementById('searchMatches');
   let refCards = document.getElementById('cards');
 
@@ -39,11 +30,11 @@ function closeMatches() {
   refMatches.innerHTML = '';
   refCards.classList.remove('d_none');
   showPokemonNumberList()
+  hideGlobalLoader();
 }
 
-// Treffer-Indizes im globalen Index ermitteln (lass das hier, wenn du es so sortiert hast)
 function getMatches(searchValue) {
-  let refSearchValue = searchValue.trim().toLowerCase();
+  let refSearchValue = searchValue;
   Matchets = [];
   PokemonList.forEach((entry, index) => {
     if (entry.name.toLowerCase().includes(refSearchValue)) {

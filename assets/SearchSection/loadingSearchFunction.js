@@ -1,4 +1,3 @@
-// === Search-Storage ===
 let Matchets = [];
 
 let SearchDetails = [];
@@ -8,7 +7,6 @@ let SearchImage = [];
 let SearchType = [];
 let SearchGeneration = [];
 
-// Alles leeren für neue Suche
 function resetSearchArrays() {
   Matchets = [];
   SearchDetails = [];
@@ -31,7 +29,6 @@ async function loadSearchDetails() {
   }
 }
 
-// Species der Treffer laden
 async function loadSearchSpecies() {
   SearchSpecies = [];
   for (let k = 0; k < SearchDetails.length; k++) {

@@ -30,10 +30,10 @@ function openPokedexTab(which) {
 
 function prevPokedex() {
   currentPokedex = (currentPokedex - 1 + PokemonName.length) % PokemonName.length;
-  renderPokedex(currentPokedex);            // komplett neu rendern
+  renderPokedex(currentPokedex);           
 }
 
 function nextPokedex() {
   currentPokedex = (currentPokedex + 1) % PokemonName.length;
-  renderPokedex(currentPokedex);            // komplett neu rendern
+  renderPokedex(currentPokedex);            
 }

@@ -1,4 +1,3 @@
-// Tabs im Search-Overlay
 function openSearchPokedexTab(which) {
   let about = document.getElementById('searchPokedexAbout');
   let stats = document.getElementById('searchPokedexStats');
@@ -18,7 +17,6 @@ function openSearchPokedexTab(which) {
   }
 }
 
-// Farbverlauf für Search-Overlay
 function applySearchOverlayBackdropStyle(index) {
   let overlayRef = document.getElementById('searchOverlay');
   let types = SearchType[index];

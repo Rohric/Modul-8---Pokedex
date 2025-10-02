@@ -9,16 +9,17 @@ async function loadAllPokemon() {
 
 async function loadMoreCards() {
   ShownCards = ShownCards + 7;
+  showGlobalLoader();
 
   await loadPokemonDetails(ShownCards);
   await loadPokemonSpecies(ShownCards);
+  hideGlobalLoader();
 
   getPokemonName();
   getPokemonImage();
   getPokemonType();
   getPokemonGeneration();
 
-  // new render
   renderAllPokemonCards(ShownCards);
   showPokemonNumberList()
 }

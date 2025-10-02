@@ -1,5 +1,4 @@
 
-/* ===== Pokedex-Container ===== */
 .pokedex {
   position: relative;
   display: flex;
@@ -16,7 +15,6 @@
   overflow: auto;
 }
 
-/* Header */
 .pokedex_header {
   display: flex;
   align-items: center;
@@ -56,7 +54,6 @@
   cursor: pointer;
 }
 
-/* ===== Body (Flex) ===== */
 .pokedex_body {
   display: flex;
   flex-direction: column;
@@ -65,7 +62,6 @@
   padding-top: 14px;
 }
 
-/* Bildbereich */
 .pokedex_image {
   display: flex;
   align-items: center;
@@ -84,7 +80,6 @@
   border-radius: 12px;
 }
 
-/* Typen */
 .pokedex_types {
   display: flex;
   flex-wrap: wrap;
@@ -95,20 +90,16 @@
   background: var(--background);
 }
 
-/* ===== Stats (Flex, kein Grid) ===== */
 :root {
   --stat-max: 255;
 }
 
-/* deine Skala */
 
 .pokedex_stat {
   --value: 0;
-  /* per JS gesetzt */
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  /* erlaubt zweite Zeile für den Balken */
   gap: 8px 12px;
   margin: 6px 0;
   padding: 6px 0;
@@ -116,19 +107,16 @@
 
 .pokedex_stat .label {
   flex: 1;
-  /* links */
   font-size: .92rem;
   color: var(--text);
 }
 
 .pokedex_stat .value {
   flex: 0;
-  /* rechts */
   font-size: .9rem;
   color: var(--muted);
 }
 
-/* Balken nimmt die ganze Zeile unter Label+Value ein */
 .pokedex_stat .bar {
   width: 100%;
   height: 10px;
@@ -142,7 +130,6 @@
   height: 100%;
   width: calc(var(--value) / var(--stat-max) * 100%);
   background: var(--overlay-backdrop);
-  /* gleiche Farbe/Verlauf wie Backdrop */
   border-right: 1px solid rgba(0, 0, 0, .2);
 }
 
@@ -171,7 +158,6 @@
   padding: 6px 10px;
 }
 
-/* Tabs-Leiste */
 .pokedex_tabs {
   display: flex;
   align-items: center;
@@ -196,7 +182,6 @@
   outline: 2px solid var(--border);
 }
 
-/* Sektionen im Overlay-Body */
 .pokedex_section {
   display: flex;
   flex-direction: column;
@@ -204,7 +189,6 @@
   padding-top: 14px;
 }
 
-/* Lore-Block steht schon in deiner Datei; hier nur für Zusammenhalt */
 .pokedex_lore {
   display: flex;
   flex-direction: column;
@@ -231,20 +215,16 @@
 }
 
 
-/* Pfeil-Container: über dem Inhalt, klickbar am Rand */
 .pokedex_nav {
   position: absolute;
   inset: 0;
-  /* deckt die Pokedex-Box */
   display: flex;
   align-items: center;
   justify-content: space-between;
   pointer-events: none;
-  /* Container blockt nichts */
   padding: 0 6px;
 }
 
-/* Buttons selbst sind klickbar */
 .pokedex_nav_btn {
   pointer-events: auto;
   border: 1px solid var(--border);
