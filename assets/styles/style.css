@@ -270,15 +270,97 @@ header span {
 
 .loading_spinner {
   background-image: url(../images/pokeball.png);
-  background-size: contain;    
+  background-size: contain;
   border-radius: 50%;
   width: 300px;
   height: 300px;
   animation: spin 2s linear infinite;
-margin: auto;
+  margin: auto;
 }
 
 @keyframes spin {
-  0%   { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================
+   Responsive: bis 500px
+   ========================================= */
+@media (max-width: 500px) {
+
+  .main_header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .main_header span {
+    width: 100%;
+    justify-content: center;
+    margin: 0;
+  }
+
+  #searchInput {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .pokedex_header {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+
+  .pokedex_name {
+    flex-basis: 100%;
+    text-align: center;
+  }
+
+  .pokedex_id,
+  .pokedex_generation {
+    padding: 4px 8px;
+  }
+
+  .pokedex_nav_btn,
+  .pokedex_close {
+    padding: 6px 10px;
+  }
+
+  .pokedex_nav_btn {
+    flex: 1 1 45%;
+  }
+
+  .pokedex_close {
+    margin-left: auto;
+  }
+
+  .pokedex_image {
+    min-height: 180px;
+    padding: 8px;
+  }
+}
+
+
+.no_matches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  width: auto;
+  margin: auto;
+  flex-direction: column;
+  gap: 12px;
 }

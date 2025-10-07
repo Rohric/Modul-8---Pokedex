@@ -35,7 +35,7 @@ function templatePokedex(index) {
         <div id="pokedexId" class="pokedex_id">#${getPokemonId(index)}</div>
         <h3 id="pokedexName" class="pokedex_name">${PokemonName[index]}</h3>
         <div id="pokedexGeneration" class="pokedex_generation">${PokemonGeneration[index]}</div>
-        <button onclick="closePokedex()" class="pokedex_close">--X--</button>
+        <button onclick="closePokedex()" class="pokedex_close">❌</button>
         <button id="pokedexNext" class="pokedex_nav_btn" onclick="nextPokedex()">▶</button>
       </header>
 

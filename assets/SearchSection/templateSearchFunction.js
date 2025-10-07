@@ -33,7 +33,7 @@ function templateSearchPokedex(index) {
           <div class="pokedex_id">#${getSearchPokemonId(index)}</div>
           <h3 class="pokedex_name">${SearchName[index]}</h3>
           <div class="pokedex_generation">${SearchGeneration[index]}</div>
-          <button onclick="closeSearchPokedex()" class="pokedex_close">--X--</button>
+          <button onclick="closeSearchPokedex()" class="pokedex_close">❌</button>
           <button id="searchPokedexNext" class="pokedex_nav_btn" onclick="nextSearchPokedex()">▶</button>
         </header>
   

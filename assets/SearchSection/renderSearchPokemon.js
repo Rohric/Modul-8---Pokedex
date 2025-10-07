@@ -1,4 +1,5 @@
 let currentSearchPokedex = null;
+let NoMatchImageSrc = './assets/images/nofound.png';
 
 async function renderMatches() {
   let refCards = document.getElementById('cards');
@@ -6,6 +7,16 @@ async function renderMatches() {
   refCards.classList.add('d_none');
   refMatches.classList.remove('d_none');
   refMatches.innerHTML = '';
+
+  if (SearchName.length === 0) {
+    refMatches.innerHTML = `
+      <div id="noMatches" class="no_Matches">
+        <img src="${NoMatchImageSrc}" alt="Kein Pokémon gefunden" style="max-width:320px;width:80%;height:auto;">
+      </div>
+    `;
+    document.getElementById('showPokemonNumberList').innerText = '0';
+    return;
+  }
 
   SearchName.forEach((name, index) => {
     refMatches.innerHTML += templatePokemonCardsSearch(name, index);
